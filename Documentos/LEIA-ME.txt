@@ -1,4 +1,0 @@
-Esta pasta contém os seguintes arquivos do projeto PitStop:
-Documento de Requisitos v1.2
-Documento de Casos de Uso v1.0
-Protótipos v1.0
