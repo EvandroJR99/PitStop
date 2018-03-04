@@ -3,3 +3,8 @@ npm install --save react-native-router-flux@3.38.0
 npm install react-native-datepicker --save
 npm install --save prop-types
 npm install react-native-ui-xg --save
+
+-------------------------------------
+
+npm install --save firebase 
+npm install --save redux-thunk
