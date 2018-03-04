@@ -1,4 +1,4 @@
-package com.pitstop;
+package com.pitstop1;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "PitStop";
+        return "PitStop1";
     }
 }

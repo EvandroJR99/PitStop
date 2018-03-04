@@ -1,5 +1,5 @@
 {
-  "name": "PitStop",
+  "name": "PitStop1",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,10 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "moment": "^2.21.0",
+    "prop-types": "^15.6.1",
     "react": "16.0.0-alpha.6",
-    "react-datepicker": "^1.2.1",
     "react-native": "0.44.0",
-    "react-native-router-flux": "^3.38.0"
+    "react-native-datepicker": "^1.6.0",
+    "react-native-router-flux": "^3.38.0",
+    "react-native-ui-xg": "0.0.6"
   },
   "devDependencies": {
     "babel-jest": "22.4.1",

@@ -1,4 +1,4 @@
-package com.pitstop;
+package com.pitstop1;
 
 import android.app.Application;
 
