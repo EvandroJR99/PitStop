@@ -1,24 +1,95 @@
-import React from 'react';
-import { Image, View, Text, TextInput, Button, StatusBar} from 'react-native';
+import React, { Component } from 'react';
+import { Image, View, Text, TextInput, Button, StatusBar } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Calendario from './Calendario';
+import { connect } from 'react-redux';
 
-export default props => (
-	
+import {
+	modificaEmail,
+	modificaSenha,
+	modificaNome,
+	cadastraUsuario
+} from '../actions/AutenticacaoActions';
 
-	<View style={{ flex: 1, padding: 10, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-		<StatusBar 
-          //hidden
-          backgroundColor='#F9A825'
-        />
-	   <View style={{ width: 300, height: 250, paddingTop: 30}}>
-		   <TextInput style={{ fontSize: 20, height: 45 }} placeholder='Nome' />
-		   <TextInput style={{ fontSize: 20, height: 45 }} placeholder='E-mail' />
-		   <TextInput secureTextEntry style={{ fontSize: 20, height: 45 }} placeholder='Senha' />
-		   <TextInput secureTextEntry style={{ fontSize: 20, height: 45 }} placeholder='Confirmação Senha' />  
-		   <Calendario /> 
-	   </View>
-	   <View style={{ width: 300, height: 200}}>
-		   <Button title="Cadastrar" color='#FBC02D' onPress={() => false} />
-	   </View>
-   </View>
-);
+
+class formCadastro extends Component {
+
+	_cadastraUsuario() {
+
+		const { nome, email, senha } = this.props;
+
+		this.props.cadastraUsuario({ nome, email, senha });
+	}
+
+	render() {
+		return (
+			<View style={{ flex: 1, padding: 30 }}>
+				<StatusBar
+					//hidden
+					backgroundColor='#F99D11'
+					barStyle="light-content"
+				/>
+				<KeyboardAwareScrollView
+					style={{ backgroundColor: '#FFF' }}
+					resetScrollToCoords={{ x: 0, y: 0 }}
+					scrollEnabled={false}
+				>
+					<View style={{ flex: 1, justifyContent: 'center' }}>
+
+						<TextInput
+							value={this.props.nome}
+							style={{ fontSize: 20, height: 45 }}
+							placeholder='Nome'
+							onChangeText={texto => this.props.modificaNome(texto)}
+						/>
+						<TextInput
+							value={this.props.email}
+							style={{ fontSize: 20, height: 45 }}
+							placeholder='E-mail'
+							onChangeText={texto => this.props.modificaEmail(texto)}
+						/>
+						<TextInput
+							value={this.props.senha}
+							secureTextEntry
+							style={{ fontSize: 20, height: 45 }}
+							placeholder='Senha'
+							onChangeText={texto => this.props.modificaSenha(texto)}
+						/>
+						<TextInput secureTextEntry style={{ fontSize: 20, height: 45 }} placeholder='Confirmação Senha' />
+						<Calendario />
+					</View>
+				</KeyboardAwareScrollView>
+				<View style={{ flex: 6 }}>
+					<Button
+						title="Cadastrar"
+						color='#F9A825'
+						onPress={() => this._cadastraUsuario()}
+					/>
+				</View>
+
+			</View>
+		);
+	}
+}
+
+const mapStateToProps = state => {
+	console.log(state);
+
+	return (
+		{
+			nome: state.AutenticacaoReducer.nome,
+			email: state.AutenticacaoReducer.email,
+			senha: state.AutenticacaoReducer.senha
+		}
+	);
+}
+
+export default connect(
+	mapStateToProps,
+	{
+		modificaEmail,
+		modificaSenha,
+		modificaNome,
+		cadastraUsuario
+	}
+)(formCadastro);

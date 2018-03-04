@@ -35,10 +35,10 @@ export default class Calendario extends Component {
 	return (
       <View style={styles.container}>
      <DatePicker
-          style={{width: 200}}
+          style={{width: 290, paddingTop: 5}}
           date={this.state.date}
           mode="date"
-          placeholder="Data"
+          placeholder="Data de Nascimento"
           androidMode="spinner"
           format="DD-MM-YYYY"
           minDate="1980-05-01"
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
   },
   welcome: {
     fontSize: 20,

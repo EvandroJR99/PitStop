@@ -5,7 +5,7 @@ import FormLogin from './components/FormLogin';
 import FormCadastro from './components/FormCadastro';
 
 export default props => (
-    <Router leftButtonIconStyle={{ tintColor: 'white' }}  navigationBarStyle={{ backgroundColor: '#FBC02D', borderBottomColor: 'transparent', borderBottomWidth: 0}} 
+    <Router sceneStyle={{ paddingTop: 50 }} leftButtonIconStyle={{ tintColor: 'white' }}  navigationBarStyle={{ backgroundColor: '#F9A825', borderBottomColor: 'transparent', borderBottomWidth: 0, elevation: 5,shadowOpacity: 5}} 
             titleStyle={{ color: '#fff'}}>
         <Scene key='formLogin' component={FormLogin} title="Login" hideNavBar={true}/>
         <Scene key='formCadastro' component={FormCadastro} title="Cadastro" hideNavBar={false} leftButtonImage={{uri:'https://www.materialui.co/materialIcons/navigation/close_grey_192x192.png'}}
