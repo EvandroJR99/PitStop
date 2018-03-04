@@ -6,5 +6,8 @@ npm install react-native-ui-xg --save
 
 -------------------------------------
 
+npm i react-native-keyboard-aware-scroll-view --save
+npm install --save redux
+npm install --save react-redux
 npm install --save firebase 
 npm install --save redux-thunk
