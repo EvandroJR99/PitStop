@@ -8,17 +8,13 @@ import {
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
-export default class Calendario extends Component {
-  constructor(props) {
-    super(props);
+import { connect } from 'react-redux';
 
-    this.state = {
-      date: '',
-      time: '20:00',
-      datetime: '2016-05-05 20:00',
-      datetime1: '2016-05-05 20:00'
-    };
-  }
+import {
+	modificaData
+} from '../actions/AutenticacaoActions';
+
+class Calendario extends Component {
 
   componentWillMount() {
     this._panResponder = PanResponder.create({
@@ -30,22 +26,23 @@ export default class Calendario extends Component {
       onPanResponderTerminate: (e) => console.log('onPanResponderTerminate')
     });
   }
+  
 
   render() {
 	return (
       <View style={styles.container}>
      <DatePicker
           style={{width: 290, paddingTop: 5}}
-          date={this.state.date}
+          date={this.props.data}
           mode="date"
           placeholder="Data de Nascimento"
           androidMode="spinner"
           format="DD-MM-YYYY"
-          minDate="1980-05-01"
-          maxDate="2016-06-01"
+          minDate="01-01-1900"
+          maxDate="28-02-1999"
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
-          onDateChange={(date) => {this.setState({date: date});}}
+          onDateChange={(date) => this.props.modificaData(date)}
         />
       </View>
     );
@@ -69,3 +66,19 @@ const styles = StyleSheet.create({
     marginBottom: 5
   }
 });
+
+const mapStateToProps = state => {
+
+	return (
+		{
+			data : state.AutenticacaoReducer.data
+		}
+	);
+}
+
+export default connect(
+	mapStateToProps,
+	{
+		modificaData
+	}
+)(Calendario);

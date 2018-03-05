@@ -8,6 +8,9 @@ import {
 	modificaEmail,
 	modificaSenha,
 	modificaNome,
+	modificaConfSenha,
+	modificaData,
+	erroCadastro,
 	cadastraUsuario
 } from '../actions/AutenticacaoActions';
 
@@ -16,9 +19,9 @@ class formCadastro extends Component {
 
 	_cadastraUsuario() {
 
-		const { nome, email, senha } = this.props;
+		const { nome, email, senha, confSenha, data } = this.props;
 
-		this.props.cadastraUsuario({ nome, email, senha });
+		this.props.cadastraUsuario({ nome, email, senha, confSenha, data });
 	}
 
 	render() {
@@ -55,8 +58,14 @@ class formCadastro extends Component {
 							placeholder='Senha'
 							onChangeText={texto => this.props.modificaSenha(texto)}
 						/>
-						<TextInput secureTextEntry style={{ fontSize: 20, height: 45 }} placeholder='Confirmação Senha' />
+						<TextInput secureTextEntry 
+							value={this.props.confSenha}
+							style={{ fontSize: 20, height: 45 }} 
+							placeholder='Confirmação Senha' 
+							onChangeText={texto => this.props.modificaConfSenha(texto)}
+						/>
 						<Calendario />
+						<Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10}}>{this.props.erroCadastro}</Text>
 					</View>
 				</KeyboardAwareScrollView>
 				<View style={{ flex: 6 }}>
@@ -79,7 +88,10 @@ const mapStateToProps = state => {
 		{
 			nome: state.AutenticacaoReducer.nome,
 			email: state.AutenticacaoReducer.email,
-			senha: state.AutenticacaoReducer.senha
+			senha: state.AutenticacaoReducer.senha,
+			confSenha: state.AutenticacaoReducer.confSenha,
+			data : state.AutenticacaoReducer.data,
+			erroCadastro: state.AutenticacaoReducer.erroCadastro
 		}
 	);
 }
@@ -90,6 +102,8 @@ export default connect(
 		modificaEmail,
 		modificaSenha,
 		modificaNome,
+		modificaConfSenha,
+		modificaData,
 		cadastraUsuario
 	}
 )(formCadastro);
