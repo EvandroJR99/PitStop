@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Image, View, Text, TextInput, Button, StatusBar } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import Calendario from './Calendario';
 import { connect } from 'react-redux';
 
 import {
@@ -19,9 +18,9 @@ class formCadastro extends Component {
 
 	_cadastraUsuario() {
 
-		const { nome, email, senha, confSenha, data } = this.props;
+		const { nome, email, senha, confSenha } = this.props;
 
-		this.props.cadastraUsuario({ nome, email, senha, confSenha, data });
+		this.props.cadastraUsuario({ nome, email, senha, confSenha});
 	}
 
 	render() {
@@ -64,7 +63,6 @@ class formCadastro extends Component {
 							placeholder='Confirmação Senha' 
 							onChangeText={texto => this.props.modificaConfSenha(texto)}
 						/>
-						<Calendario />
 						<Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10}}>{this.props.erroCadastro}</Text>
 					</View>
 				</KeyboardAwareScrollView>
@@ -90,7 +88,6 @@ const mapStateToProps = state => {
 			email: state.AutenticacaoReducer.email,
 			senha: state.AutenticacaoReducer.senha,
 			confSenha: state.AutenticacaoReducer.confSenha,
-			data : state.AutenticacaoReducer.data,
 			erroCadastro: state.AutenticacaoReducer.erroCadastro
 		}
 	);
@@ -103,7 +100,6 @@ export default connect(
 		modificaSenha,
 		modificaNome,
 		modificaConfSenha,
-		modificaData,
 		cadastraUsuario
 	}
 )(formCadastro);
