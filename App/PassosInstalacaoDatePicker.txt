@@ -12,3 +12,15 @@ npm install --save react-redux
 npm install --save firebase 
 npm install --save redux-thunk
 npm install --save base-64
+npm install --save react-native-tab-view
+
+-------------------------------------
+
+npm i react-native-action-button --save
+npm install react-native-vector-icons --save
+react-native link react-native-vector-icons
+
+Se o ícone não aparecer, é necessário fazer os passos a seguir:
+react-native link
+react-native run-android
+
