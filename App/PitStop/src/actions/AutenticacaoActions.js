@@ -9,8 +9,11 @@ import {
     MODIFICA_NOME,
     CADASTRO_USUARIO_SUCESSO,
     CADASTRO_USUARIO_ERRO,
+    CADASTRO_USUARIO_ERRO_SENHA,
     LOGIN_USUARIO_SUCESSO,
-    LOGIN_USUARIO_ERRO
+    LOGIN_USUARIO_ERRO,
+    LOGIN_EM_ANDAMENTO,
+    CADASTRO_EM_ANDAMENTO
 } from './types';
 
 export const modificaEmail = (texto) => {
@@ -43,24 +46,18 @@ export const modificaNome = (texto) => {
 
 export const cadastraUsuario = ({ nome, email, senha, confSenha }) => {
     return dispatch => {
+        dispatch({ type: CADASTRO_EM_ANDAMENTO });
         if (senha == confSenha) {
             firebase.auth().createUserWithEmailAndPassword(email, senha)
                 .then(user => {
                     let emailB64 = b64.encode(email); //Criptografa o email
-                    firebase.database().ref('/usuarios/' + emailB64) //Acho que é assim, mas não tenho certeza se precisa refenciar duas vezes, olhar o BD
+                    firebase.database().ref('/usuarios/' + emailB64)
                         .push({ nome })
                         .then(value => cadastroUsuarioSucesso(dispatch))
                 })
                 .catch(erro => cadastroUsuarioErro(erro, dispatch));
         } else {
-            Alert.alert( //É melhor alert ou um text contendo os erros???
-                'Erro',
-                'As senhas digitadas não são iguais.',
-                [
-                    { text: 'OK', onPress: () => dispatch({ type: 'cadastro_usuario_erro_senha' }) },
-                ],
-                { cancelable: false }
-            )
+            dispatch({ type: CADASTRO_USUARIO_ERRO_SENHA });
         }
     }
 }
@@ -84,6 +81,7 @@ const cadastroUsuarioErro = (erro, dispatch) => {
 export const autenticarUsuario = ({ email, senha }) => {
 
     return dispatch => {
+        dispatch({ type: LOGIN_EM_ANDAMENTO });
         firebase.auth().signInWithEmailAndPassword(email, senha)
             .then(value => loginUsuarioSucesso(dispatch))
             .catch(erro => loginUsuarioErro(erro, dispatch));

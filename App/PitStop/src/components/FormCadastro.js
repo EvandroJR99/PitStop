@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, View, Text, TextInput, Button, StatusBar } from 'react-native';
+import { Image, View, Text, TextInput, Button, StatusBar, ActivityIndicator } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { connect } from 'react-redux';
 
@@ -22,6 +22,17 @@ class formCadastro extends Component {
 
 		this.props.cadastraUsuario({ nome, email, senha, confSenha});
 	}
+
+	renderBtnCadastro() {
+        if(this.props.loading_cadastro) {
+            return (
+                <ActivityIndicator size="large" />
+            )
+        }
+        return (
+            <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraUsuario()} />
+        )
+    }
 
 	render() {
 		return (
@@ -67,11 +78,7 @@ class formCadastro extends Component {
 					</View>
 				</KeyboardAwareScrollView>
 				<View style={{ flex: 6 }}>
-					<Button
-						title="Cadastrar"
-						color='#F9A825'
-						onPress={() => this._cadastraUsuario()}
-					/>
+					{this.renderBtnCadastro()}
 				</View>
 
 			</View>
@@ -88,7 +95,8 @@ const mapStateToProps = state => {
 			email: state.AutenticacaoReducer.email,
 			senha: state.AutenticacaoReducer.senha,
 			confSenha: state.AutenticacaoReducer.confSenha,
-			erroCadastro: state.AutenticacaoReducer.erroCadastro
+			erroCadastro: state.AutenticacaoReducer.erroCadastro,
+			loading_cadastro: state.AutenticacaoReducer.loading_cadastro
 		}
 	);
 }
