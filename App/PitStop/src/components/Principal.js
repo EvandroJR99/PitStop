@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StatusBar, Text, Button, TouchableOpacity, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon2 from 'react-native-vector-icons/Octicons';
 
 
 const Principal = props => (
@@ -29,10 +30,10 @@ const Principal = props => (
                     <TouchableOpacity onPress={() => Actions.automoveis()}>
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
-                            justifyContent: 'center', borderRadius: 2, width: 115, height: 121, elevation: 4, marginBottom: 6
+                            justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
                         }}
                         >
-                            <Icon name="car" size={45} color="#fff" />
+                            <Icon name="car" size={60} color="#fff" />
                             <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15, paddingTop: 10 }}>AUTOMÓVEIS</Text>
                         </View>
                     </TouchableOpacity>
@@ -41,11 +42,11 @@ const Principal = props => (
                     <TouchableOpacity >
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
-                            justifyContent: 'center', borderRadius: 2, width: 115, height: 121, elevation: 4, marginBottom: 6
+                            justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
                         }}
                         >   
-                            <Icon name="map-marker" size={45} color="#fff" />
-                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15, paddingTop: 10 }}>LOCAIS</Text>
+                            <Icon name="map-marker" size={50} color="#fff" />
+                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15, paddingTop: 15 }}>LOCAIS</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -55,10 +56,11 @@ const Principal = props => (
                     <TouchableOpacity >
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
-                            justifyContent: 'center', borderRadius: 2, width: 115, height: 121, elevation: 4, marginBottom: 6
+                            justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
                         }}
                         >
-                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15 }}>INTERVENÇÕES</Text>
+                            <Icon2 name="tools" size={40} color="#fff" />
+                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15, paddingTop: 20}}>INTERVENÇÕES</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -66,10 +68,11 @@ const Principal = props => (
                     <TouchableOpacity >
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
-                            justifyContent: 'center', borderRadius: 2, width: 115, height: 121, elevation: 4, marginBottom: 6
+                            justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
                         }}
                         >
-                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15 }}>SOBRE</Text>
+                            <Icon name="information-variant" size={58} color="#fff" />
+                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15  }}>SOBRE</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
