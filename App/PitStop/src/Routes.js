@@ -5,6 +5,7 @@ import FormLogin from './components/FormLogin';
 import FormCadastro from './components/FormCadastro';
 import Principal from './components/Principal';
 import Automoveis from './components/Automoveis';
+import FormVeiculo from './components/FormVeiculo';
 
 export default props => (
     <Router leftButtonIconStyle={{ tintColor: 'white' }}  navigationBarStyle={{ backgroundColor: '#F9A825', borderBottomColor: 'transparent', borderBottomWidth: 0, elevation: 5,shadowOpacity: 5}} 
@@ -13,5 +14,6 @@ export default props => (
         <Scene key='formCadastro' component={FormCadastro} title="Cadastro" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='principal' component={Principal} title="Principal" hideNavBar={true} />
         <Scene key='automoveis' component={Automoveis} title="Automóveis" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='formVeiculo' component={FormVeiculo} title="Cadastro" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
     </Router>
 );

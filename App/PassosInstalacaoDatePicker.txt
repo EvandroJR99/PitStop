@@ -24,3 +24,5 @@ Se o ícone não aparecer, é necessário fazer os passos a seguir:
 react-native link
 react-native run-android
 
+----------------------------------------
+npm install --save lodash
