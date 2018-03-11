@@ -73,7 +73,7 @@ const adicionaLocalErro = (erro, dispatch) => {
 
 }
 
-const adiconaLocalSucesso = (dispatch) => {
+const adicionaLocalSucesso = (dispatch) => {
 
     dispatch(
         {

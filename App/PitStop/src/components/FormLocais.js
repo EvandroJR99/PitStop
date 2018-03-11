@@ -27,7 +27,7 @@ import {
             )
         }
         return (
-            <Button title="Cadastrar" color="#F9A825" onPress={() =>{}} />
+            <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraLocal()} />
         )
     }
 
@@ -60,7 +60,6 @@ import {
 						/>
 						<TextInput
 							value={this.props.endereco}
-							secureTextEntry
 							style={{ fontSize: 20, height: 45 }}
 							placeholder='Endereço'
 							onChangeText={texto => this.props.modificaEndereco(texto)}
@@ -87,7 +86,8 @@ const mapStateToProps = state => {
 			responsavel: state.LocaisReducer.responsavel,
 			endereco: state.LocaisReducer.endereco,
 			adiciona_local_sucesso: state.LocaisReducer.adiciona_local_sucesso,
-            adiciona_local_erro: state.LocaisReducer.adiciona_local_erro
+			adiciona_local_erro: state.LocaisReducer.adiciona_local_erro,
+			loading_cadastro: state.LocaisReducer.cadastro_em_andamento
 		}
 	);
 }

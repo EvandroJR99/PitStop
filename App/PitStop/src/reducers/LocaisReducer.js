@@ -31,6 +31,7 @@ export default (state = INITIAL_STATE, action) => {
                 responsavel: '',
                 endereco: '',
                 adicona_local_erro: '',
+                adiciona_local_sucesso: '',
                 cadastro_em_andamento: false
             }
         case CADASTRO_EM_ANDAMENTO:
