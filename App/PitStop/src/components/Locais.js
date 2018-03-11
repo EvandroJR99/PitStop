@@ -3,12 +3,9 @@ import { View, Text, Alert, ListView } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import { connect } from 'react-redux';
 import _ from 'lodash'
-import { veiculosUsuarioFetch } from '../actions/AppActions';
+//import { LocaisFetch } from '../actions/LocaisActions';
 
 import { Actions } from 'react-native-router-flux';
-
-
-
 
 export default class Locais extends Component {
 

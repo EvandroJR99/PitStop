@@ -4,11 +4,21 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { connect } from 'react-redux';
 
 
+import {
+	modificaNomeLocal,
+	modificaResponsavel,
+	modificaEndereco,
+	cadastraLocal
+} from '../actions/LocaisActions';
 
+ class formLocais extends Component {
 
-export default class formLocais extends Component {
+	_cadastraLocal() {
 
+		const { nomeLocal, responsavel, endereco } = this.props;
 
+		this.props.cadastraLocal({ nomeLocal, responsavel, endereco });
+	}
 
 	renderBtnCadastro() {
         if(this.props.loading_cadastro) {
@@ -37,26 +47,26 @@ export default class formLocais extends Component {
 					<View style={{ flex: 1, justifyContent: 'center' }}>
 
 						<TextInput
-//							value={this.props.nome}
+							value={this.props.nomeLocal}
 							style={{ fontSize: 20, height: 45 }}
 							placeholder='Nome do Local'
-//							onChangeText={texto => {}}
+							onChangeText={texto => this.props.modificaNomeLocal(texto)}
 						/>
 						<TextInput
-//							value={this.props.email}
+							value={this.props.responsavel}
 							style={{ fontSize: 20, height: 45 }}
-							placeholder='Especialidade '
-//							onChangeText={texto => {}}
+							placeholder='Responsavel '
+							onChangeText={texto => this.props.modificaResponsavel(texto)}
 						/>
 						<TextInput
-//							value={this.props.senha}
+							value={this.props.endereco}
 							secureTextEntry
 							style={{ fontSize: 20, height: 45 }}
 							placeholder='Endereço'
-//							onChangeText={texto => {}}
+							onChangeText={texto => this.props.modificaEndereco(texto)}
 						/>
 						
-						<Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10}}>{this.props.erroCadastro}</Text>
+						<Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10}}>{this.props.adiciona_local_erro}</Text>
 					</View>
 				</KeyboardAwareScrollView>
 				<View style={{ flex: 6 }}>
@@ -68,3 +78,26 @@ export default class formLocais extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+	console.log(state);
+
+	return (
+		{
+			nomeLocal: state.LocaisReducer.nomeLocal,
+			responsavel: state.LocaisReducer.responsavel,
+			endereco: state.LocaisReducer.endereco,
+			adiciona_local_sucesso: state.LocaisReducer.adiciona_local_sucesso,
+            adiciona_local_erro: state.LocaisReducer.adiciona_local_erro
+		}
+	);
+}
+
+export default connect(
+	mapStateToProps,
+	{
+		modificaNomeLocal,
+		modificaResponsavel,
+		modificaEndereco,
+		cadastraLocal
+	}
+)(formLocais);
