@@ -39,7 +39,7 @@ const Principal = props => (
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={() => Actions.locais()}>
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
                             justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
