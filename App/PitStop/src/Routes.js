@@ -8,6 +8,8 @@ import Automoveis from './components/Automoveis';
 import FormVeiculo from './components/FormVeiculo';
 import Locais from './components/Locais';
 import FormLocais from './components/FormLocais';
+import FormIntervencoes from './components/FormIntervencoes';
+import FormPeca from './components/FormPeca';
 
 export default props => (
     <Router leftButtonIconStyle={{ tintColor: 'white' }}  navigationBarStyle={{ backgroundColor: '#F9A825', borderBottomColor: 'transparent', borderBottomWidth: 0, elevation: 5,shadowOpacity: 5}} 
@@ -19,5 +21,8 @@ export default props => (
         <Scene key='formVeiculo' component={FormVeiculo} title="Cadastro" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='locais' component={Locais} title="Locais" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='formLocais' component={FormLocais} title="Locais" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='formIntervencoes' component={FormIntervencoes} title="Intervenções" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='formPeca' component={FormPeca} title="Pecas" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+    
     </Router>
 );

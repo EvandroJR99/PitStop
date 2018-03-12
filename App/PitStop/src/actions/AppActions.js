@@ -14,7 +14,8 @@ import {
     ADICIONA_VEICULO_ERRO,
     ADICIONA_VEICULO_SUCESSO,
     CADASTRO_VEICULO_EM_ANDAMENTO,
-    LISTA_VEICULO_USUARIO
+    LISTA_VEICULO_USUARIO,
+    LISTA_VEICULO_USUARIO_DROP
 } from './types';
 
 export const modificaAno = texto => {
@@ -136,3 +137,39 @@ export const veiculosUsuarioFetch = () => {
             })
     }
 }
+
+export const veiculosUsuarioFetchDropdown = () => {
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) => {
+        let emailUsuarioB64 = b64.encode( currentUser.email );
+
+        firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
+            .on("value", snapshot => {
+               // dispatch({ type: LISTA_VEICULO_USUARIO, payload: snapshot.val() })
+               dispatch({ type: LISTA_VEICULO_USUARIO_DROP, payload: snapshotToArray(snapshot) })
+            
+            })
+
+            
+    }
+}
+
+function snapshotToArray(snapshot){
+    var items = [];
+            snapshot.forEach(function(childSnapshot){
+                var item = childSnapshot.val().apelido;
+                item.key = childSnapshot.key;
+                items.push(item);
+            });
+        var vetor = items;
+        /*
+        for( var i in vetor){
+            var apelido = vetor[i].apelido;
+            console.log("apelido", apelido);
+        }
+        */
+            console.log("OS ITEMAAAA", items.apelido);
+            return  items;
+}
+

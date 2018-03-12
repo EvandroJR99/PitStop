@@ -8,6 +8,7 @@ import {
     ADICIONA_VEICULO_ERRO,
     ADICIONA_VEICULO_SUCESSO,
     CADASTRO_VEICULO_EM_ANDAMENTO
+    
 } from '../actions/types';
 
 const INITIAL_STATE = {

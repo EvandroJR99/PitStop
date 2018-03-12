@@ -24,3 +24,10 @@ export const MODIFICA_RESPONSAVEL = 'modifica_responsavel';
 export const MODIFICA_ENDERECO = 'modifica_endereco';
 export const ADICIONA_LOCAL_SUCESSO = 'adiciona_local_sucesso';
 export const ADICIONA_LOCAL_ERRO = 'adiciona_local_erro';
+
+export const MODIFICA_PECA = 'modifica_peca';
+export const MODIFICA_DESCRICAO_PECA = 'modifica_descricao_peca';
+export const ADICIONA_PECA_SUCESSO = 'adiciona_peca_sucesso';
+export const ADICIONA_PECA_ERRO = 'adiciona_peca_erro';
+
+export const LISTA_VEICULO_USUARIO_DROP= 'lista_veiculo_usuario_drop';

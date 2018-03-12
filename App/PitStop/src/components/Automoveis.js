@@ -24,7 +24,7 @@ class Automoveis extends Component {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
 
         this.fonteDeDados = ds.cloneWithRows(veiculos)
-        console.log(this.fonteDeDados)
+        console.log("fonte de dados", this.fonteDeDados)
     }
 
     render() {
