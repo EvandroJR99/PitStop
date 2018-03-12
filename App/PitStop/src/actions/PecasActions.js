@@ -8,7 +8,7 @@ import {
     MODIFICA_DESCRICAO_PECA,
     ADICIONA_PECA_SUCESSO,
     ADICIONA_PECA_ERRO,
-    CADASTRO_EM_ANDAMENTO,   
+    CADASTRO_EM_ANDAMENTO,
     LISTA_PECA_DROP
 } from './types';
 
@@ -92,23 +92,22 @@ export const PecasFetchDropdown = () => {
 
     return (dispatch) => {
 
-        firebase.database().ref(`/pecas`)
+        firebase.database().ref(`/pecas/`)
             .on("value", snapshot => {
-               dispatch({ type: LISTA_PECA_DROP, payload: snapshotToArray(snapshot) })
-            
+                dispatch({ type: LISTA_PECA_DROP, payload: snapshotToArray(snapshot) })
             })
 
-            
+
     }
 }
 
-function snapshotToArray(snapshot){
+function snapshotToArray(snapshot) {
     var pecas = [];
-            snapshot.forEach(function(childSnapshot){
-                var item = childSnapshot.val();
-                item.key = childSnapshot.key;
-                pecas.push(item);
-            });
-            return  pecas;
+    snapshot.forEach(function (childSnapshot) {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        pecas.push(item);
+    });
+    return pecas;
 }
 

@@ -9,7 +9,8 @@ import {
     MODIFICA_ENDERECO,
     ADICIONA_LOCAL_SUCESSO,
     ADICIONA_LOCAL_ERRO,
-    CADASTRO_EM_ANDAMENTO
+    CADASTRO_EM_ANDAMENTO,
+    LISTA_LOCAIS
 } from './types';
 
 export const modificaNomeLocal = (texto) => {
@@ -93,3 +94,12 @@ const adicionaLocalSucesso = (dispatch) => {
 
 
 
+export const locaisFetch = () => {
+
+    return (dispatch) => {
+        firebase.database().ref(`/locais`)
+            .on("value", snapshot => {
+                dispatch({ type: LISTA_LOCAIS, payload: snapshot.val() })
+            })
+    }
+}
