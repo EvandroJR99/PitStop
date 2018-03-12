@@ -3,6 +3,8 @@ import { Image, View, Text, TextInput, Button, StatusBar, ActivityIndicator } fr
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { connect } from 'react-redux';
 
+import { Dropdown } from 'react-native-material-dropdown';
+
 import {
 	modificaPeca,
 	modificaDescricaoPeca,
@@ -45,6 +47,10 @@ class formPeca extends Component {
 				>
 					<View style={{ flex: 1, justifyContent: 'center' }}>
 
+						 <View>
+                            <Text>Escolha a peça</Text>
+                            <Dropdown dropdownPosition='0' label='selecione o automóvel' data = {this.props.dadosPeca} labelExtractor = {({ nomePeca }) => nomePeca}/* valueExtractor={({ placa }) => placa}*//>
+                        </View>
 						<TextInput
 							value={this.props.peca}
 							style={{ fontSize: 20, height: 45 }}

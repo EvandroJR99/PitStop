@@ -78,7 +78,7 @@ class formIntervencoes extends Component {
 
                         <View>
                             <Text>Escolha o automóvel</Text>
-                            <Dropdown dropdownPosition='0' label='selecione o automóvel' data = {this.props.dados} valueExtractor={({ apelido }) => apelido}/>
+                            <Dropdown dropdownPosition='0' label='selecione o automóvel' data = {this.props.dados} labelExtractor = {({ apelido }) => apelido} valueExtractor={({ placa }) => placa}/>
                         </View>
                         <TextInput
                             //	value={ /*this.props.peca*/}

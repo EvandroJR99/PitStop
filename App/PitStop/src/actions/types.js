@@ -31,3 +31,4 @@ export const ADICIONA_PECA_SUCESSO = 'adiciona_peca_sucesso';
 export const ADICIONA_PECA_ERRO = 'adiciona_peca_erro';
 
 export const LISTA_VEICULO_USUARIO_DROP= 'lista_veiculo_usuario_drop';
+export const LISTA_PECA_DROP= 'lista_peca_drop';

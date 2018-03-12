@@ -8,7 +8,8 @@ import {
     MODIFICA_DESCRICAO_PECA,
     ADICIONA_PECA_SUCESSO,
     ADICIONA_PECA_ERRO,
-    CADASTRO_EM_ANDAMENTO
+    CADASTRO_EM_ANDAMENTO,   
+    LISTA_PECA_DROP
 } from './types';
 
 export const modificaPeca = (texto) => {
@@ -87,4 +88,29 @@ const adicionaPecaSucesso = (dispatch) => {
 }
 
 
+export const PecasFetchDropdown = () => {
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) => {
+        let emailUsuarioB64 = b64.encode( currentUser.email );
+
+        firebase.database().ref(`/pecas/${emailUsuarioB64}`)
+            .on("value", snapshot => {
+               dispatch({ type: LISTA_PECA_DROP, payload: snapshotToArray(snapshot) })
+            
+            })
+
+            
+    }
+}
+
+function snapshotToArray(snapshot){
+    var pecas = [];
+            snapshot.forEach(function(childSnapshot){
+                var item = childSnapshot.val();
+                item.key = childSnapshot.key;
+                pecas.push(item);
+            });
+            return  pecas;
+}
 
