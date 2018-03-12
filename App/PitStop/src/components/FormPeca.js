@@ -8,11 +8,18 @@ import { Dropdown } from 'react-native-material-dropdown';
 import {
 	modificaPeca,
 	modificaDescricaoPeca,
-    cadastraPeca
+	cadastraPeca,
+	PecasFetchDropdown
 } from '../actions/PecasActions';
 
 
 class formPeca extends Component {
+
+	componentWillMount() {
+
+        this.props.PecasFetchDropdown();
+       // this.criaFonteDeDados(this.props.veiculos)
+    }
 
 	_cadastraPeca() {
 
@@ -49,7 +56,7 @@ class formPeca extends Component {
 
 						 <View>
                             <Text>Escolha a peça</Text>
-                            <Dropdown dropdownPosition='0' label='selecione o automóvel' data = {this.props.dadosPeca} labelExtractor = {({ nomePeca }) => nomePeca}/* valueExtractor={({ placa }) => placa}*//>
+                            <Dropdown dropdownPosition='0' label='selecione a peça' data={this.props.dadosPeca} valueExtractor ={({ nomePeca }) => nomePeca}/* valueExtractor={({ placa }) => placa}*//>
                         </View>
 						<TextInput
 							value={this.props.peca}
@@ -84,7 +91,8 @@ const mapStateToProps = state => {
 			descricaoPeca: state.PecasReducer.descricaoPeca,			
 			adiciona_peca_sucesso: state.PecasReducer.adiciona_peca_sucesso,
 			adiciona_peca_erro: state.PecasReducer.adiciona_peca_erro,
-			loading_cadastro: state.PecasReducer.cadastro_em_andamento
+			loading_cadastro: state.PecasReducer.cadastro_em_andamento,
+			dadosPeca: state.ListaPecaReducer.dadosPeca
 		}
 	);
 }
@@ -94,6 +102,7 @@ export default connect(
 	{
 		modificaPeca,
 		modificaDescricaoPeca,
-		cadastraPeca
+		cadastraPeca,
+		PecasFetchDropdown
 	}
 )(formPeca);

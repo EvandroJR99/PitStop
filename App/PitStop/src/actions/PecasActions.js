@@ -89,12 +89,10 @@ const adicionaPecaSucesso = (dispatch) => {
 
 
 export const PecasFetchDropdown = () => {
-    const { currentUser } = firebase.auth();
 
     return (dispatch) => {
-        let emailUsuarioB64 = b64.encode( currentUser.email );
 
-        firebase.database().ref(`/pecas/${emailUsuarioB64}`)
+        firebase.database().ref(`/pecas`)
             .on("value", snapshot => {
                dispatch({ type: LISTA_PECA_DROP, payload: snapshotToArray(snapshot) })
             
