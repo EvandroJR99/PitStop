@@ -158,7 +158,7 @@ export const veiculosUsuarioFetchDropdown = () => {
 function snapshotToArray(snapshot){
     var items = [];
             snapshot.forEach(function(childSnapshot){
-                var item = childSnapshot.val().apelido;
+                var item = childSnapshot.val();
                 item.key = childSnapshot.key;
                 items.push(item);
             });

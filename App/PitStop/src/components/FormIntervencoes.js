@@ -61,8 +61,6 @@ class formIntervencoes extends Component {
 
     render() {
 
-        const lista = [this.props.dados];
-
         return (
             <View style={{ flex: 1, padding: 30 }}>
 
@@ -80,7 +78,7 @@ class formIntervencoes extends Component {
 
                         <View>
                             <Text>Escolha o automóvel</Text>
-                            <Dropdown dropdownPosition='0' label='selecione o automóvel' data = {lista} />
+                            <Dropdown dropdownPosition='0' label='selecione o automóvel' data = {this.props.dados} valueExtractor={({ apelido }) => apelido}/>
                         </View>
                         <TextInput
                             //	value={ /*this.props.peca*/}
