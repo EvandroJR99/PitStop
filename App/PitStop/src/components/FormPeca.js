@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { connect } from 'react-redux';
 
 import { Dropdown } from 'react-native-material-dropdown';
+import { LISTA_PECA_DROP } from '../actions/types';
 
 import {
 	modificaPeca,

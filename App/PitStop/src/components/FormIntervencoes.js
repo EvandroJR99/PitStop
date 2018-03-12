@@ -6,6 +6,8 @@ import Calendario from './Calendario';
 import { Dropdown } from 'react-native-material-dropdown';
 import { veiculosUsuarioFetchDropdown } from '../actions/AppActions';
 import { LISTA_VEICULO_USUARIO_DROP } from '../actions/types';
+import FormPeca from './FormPeca';
+import { Actions } from 'react-native-router-flux';
 /*
 import {
 	modificaPeca,
@@ -36,6 +38,8 @@ class formIntervencoes extends Component {
             )
             */
     //    }
+
+            
 
     componentWillMount() {
 
@@ -99,6 +103,7 @@ class formIntervencoes extends Component {
                     </View>
                 </KeyboardAwareScrollView>
                 <View style={{ flex: 6 }}>
+                    {<Button title="Próximo" color="#F9A825" onPress={() => {Actions.formPeca();}} />}
                     {/*this.renderBtnCadastro()*/}
                 </View>
             </View>
