@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, StatusBar, Text, Button, TouchableOpacity, Image } from 'react-native';
+import { View, StatusBar, Text, Button, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Octicons';
+import firebase from 'firebase';
 
 
 const Principal = props => (
@@ -19,14 +20,19 @@ const Principal = props => (
                     <Text style={{ color: "#fff", fontSize: 20, marginLeft: 20 }}>Pit Stop</Text>
                 </View>
 
+
                 <View style={{ justifyContent: 'center', marginRight: 20 }}>
-                    <Icon name="logout" size={25} color="#fff" />
+                    <TouchableHighlight onPress={
+                        () => firebase.auth().signOut().then(() => Actions.formLogin())
+                    }>
+                        <Icon name="logout" size={25} color="#fff" />
+                    </TouchableHighlight>
                 </View>
             </View>
         </View>
         <View style={{ flex: 1, padding: 50, justifyContent: 'center' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                <View style={{ paddingRight: 20  }}>
+                <View style={{ paddingRight: 20 }}>
                     <TouchableOpacity onPress={() => Actions.automoveis()}>
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
@@ -44,7 +50,7 @@ const Principal = props => (
                             backgroundColor: '#F9A825', alignItems: 'center',
                             justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
                         }}
-                        >   
+                        >
                             <Icon name="map-marker" size={50} color="#fff" />
                             <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15, paddingTop: 15 }}>LOCAIS</Text>
                         </View>
@@ -52,7 +58,7 @@ const Principal = props => (
                 </View>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'center', paddingTop: 15 }}>
-                <View style={{ paddingRight: 20  }}>
+                <View style={{ paddingRight: 20 }}>
                     <TouchableOpacity onPress={() => Actions.formIntervencoes()}>
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
@@ -60,19 +66,19 @@ const Principal = props => (
                         }}
                         >
                             <Icon2 name="tools" size={40} color="#fff" />
-                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15, paddingTop: 20}}>INTERVENÇÕES</Text>
+                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15, paddingTop: 20 }}>INTERVENÇÕES</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <TouchableOpacity onPress={() => Actions.formPeca()}>
+                    <TouchableOpacity onPress={() => { }}>
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
                             justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
                         }}
                         >
                             <Icon name="information-variant" size={58} color="#fff" />
-                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15  }}>SOBRE</Text>
+                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15 }}>SOBRE</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

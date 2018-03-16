@@ -119,7 +119,7 @@ const adicionaVeiculoSucesso = dispatch => {
         'Cadastrado!',
         'Cadastro do veículo realizado com sucesso!',
         [
-            { text: 'OK', onPress: () => Actions.automoveis() },
+            { text: 'OK', onPress: () => Actions.principal() },
         ],
         { cancelable: false }
     )

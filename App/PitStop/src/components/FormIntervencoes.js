@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, View, Text, TextInput, Button, StatusBar, ActivityIndicator, ListView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { connect } from 'react-redux';
-import Calendario from './Calendario';
+import CalendarioInt from './CalendarioInt';
 import { Dropdown } from 'react-native-material-dropdown';
 import { veiculosUsuarioFetchDropdown } from '../actions/AppActions';
 import { LISTA_VEICULO_USUARIO_DROP } from '../actions/types';
@@ -39,26 +39,26 @@ class formIntervencoes extends Component {
             */
     //    }
 
-            
+
 
     componentWillMount() {
 
         this.props.veiculosUsuarioFetchDropdown();
-       // this.criaFonteDeDados(this.props.veiculos)
+        // this.criaFonteDeDados(this.props.veiculos)
     }
-/*
-    componentWillReceiveProps(nextProps) {
-       // this.criaFonteDeDados(nextProps.veiculos)
-    }
-
-    criaFonteDeDados(veiculos) {
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
-
-        this.fonteDeDados = ds.cloneWithRows(veiculos)
-        console.log(this.fonteDeDados)
-    }
-
-*/
+    /*
+        componentWillReceiveProps(nextProps) {
+           // this.criaFonteDeDados(nextProps.veiculos)
+        }
+    
+        criaFonteDeDados(veiculos) {
+            const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+    
+            this.fonteDeDados = ds.cloneWithRows(veiculos)
+            console.log(this.fonteDeDados)
+        }
+    
+    */
 
 
 
@@ -81,8 +81,7 @@ class formIntervencoes extends Component {
                     <View style={{ flex: 3, justifyContent: 'center' }}>
 
                         <View>
-                            <Text>Escolha o automóvel</Text>
-                            <Dropdown dropdownPosition='0' label='selecione o automóvel' data = {this.props.dados} labelExtractor = {({ apelido }) => apelido} valueExtractor={({ placa }) => placa}/>
+                            <Dropdown dropdownPosition='0' label='Selecione o automóvel' data={this.props.dados} labelExtractor={({ apelido }) => apelido} valueExtractor={({ placa }) => placa} />
                         </View>
                         <TextInput
                             //	value={ /*this.props.peca*/}
@@ -97,15 +96,16 @@ class formIntervencoes extends Component {
                         //	onChangeText={texto => {}/*this.props.modificaDescricaoPeca(texto)*/}
                         />
 
-                        <Calendario />
+                        <CalendarioInt />
 
                         <Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10 }}>{ /*this.props.erroCadastro*/}</Text>
                     </View>
+                    <View style={{ width: 100, alignItems: 'center', justifyContent: 'center'}}>
+                        {<Button title="Próximo" color="#F9A825" onPress={() => { Actions.formPeca(); }} />}
+                        {/*this.renderBtnCadastro()*/}
+                    </View>
                 </KeyboardAwareScrollView>
-                <View style={{ flex: 6 }}>
-                    {<Button title="Próximo" color="#F9A825" onPress={() => {Actions.formPeca();}} />}
-                    {/*this.renderBtnCadastro()*/}
-                </View>
+
             </View>
         );
     }
@@ -113,13 +113,13 @@ class formIntervencoes extends Component {
 
 
 const mapStateToProps = state => {
-	console.log(state);
+    console.log(state);
 
-	return (
-		{
-			dados: state.ListaVeiculoReducer.dados
-		}
-	);
+    return (
+        {
+            dados: state.ListaVeiculoReducer.dados
+        }
+    );
 }
 
 export default connect(
