@@ -9,8 +9,9 @@ import {
     MODIFICA_ENDERECO,
     ADICIONA_LOCAL_SUCESSO,
     ADICIONA_LOCAL_ERRO,
-    CADASTRO_EM_ANDAMENTO,
-    LISTA_LOCAIS
+    CADASTRO_EM_ANDAMENTO_LOCAL,
+    LISTA_LOCAIS,
+    LISTA_LOCAIS_DROP
 } from './types';
 
 export const modificaNomeLocal = (texto) => {
@@ -36,7 +37,7 @@ export const modificaEndereco = (texto) => {
 
 export const cadastraLocal = ({ nomeLocal, responsavel, endereco }) => {
     return dispatch => {
-        dispatch({ type: CADASTRO_EM_ANDAMENTO });
+        dispatch({ type: CADASTRO_EM_ANDAMENTO_LOCAL });
         let enderecoB64 = b64.encode(endereco);
 
         firebase.database().ref(`/locais/${enderecoB64}`)
@@ -53,7 +54,7 @@ export const cadastraLocal = ({ nomeLocal, responsavel, endereco }) => {
                 } else {
                     //adiciona o local
                     firebase.database().ref(`/locais/${enderecoB64}`)
-                        .push({ nomeLocal: nomeLocal, responsavel: responsavel, endereco: endereco })
+                        .set({ nomeLocal: nomeLocal, responsavel: responsavel, endereco: endereco })
                         .then(() => adicionaLocalSucesso(dispatch))
                         .catch(erro => adicionaLocalErro(erro.message, dispatch))
                 }
@@ -92,7 +93,25 @@ const adicionaLocalSucesso = (dispatch) => {
     )
 }
 
+export const LocaisFetchDropdown = () => {
+    return (dispatch) => {
+        firebase.database().ref(`/locais/`)
+            .on("value", snapshot => {
+                dispatch({ type: LISTA_LOCAIS_DROP, payload: snapshotToArray(snapshot) })
+            })
+        }
 
+}
+
+function snapshotToArray(snapshot) {
+    var locais = [];
+    snapshot.forEach(function (childSnapshot) {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        locais.push(item);
+    });
+    return locais;
+}
 
 export const locaisFetch = () => {
 

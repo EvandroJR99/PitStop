@@ -9,6 +9,9 @@ export const LOGIN_USUARIO_SUCESSO = 'login_usuario_sucesso';
 export const LOGIN_USUARIO_ERRO = 'login_usuario_erro';
 export const LOGIN_EM_ANDAMENTO = 'login_em_andamento';
 export const CADASTRO_EM_ANDAMENTO = 'cadastro_em_andamento'; /// fazer um diferente pra cada botao
+
+export const CADASTRO_EM_ANDAMENTO_LOCAL = 'cadastro_em_andamento_local';
+
 export const MODIFICA_PLACA =  'modifica_placa';
 export const MODIFICA_QUILOMETRAGEM = 'modifica_quilometragem';
 export const MODIFICA_ANO = 'modifica_ano';
@@ -34,3 +37,16 @@ export const LISTA_VEICULO_USUARIO_DROP= 'lista_veiculo_usuario_drop';
 export const LISTA_PECA_DROP= 'lista_peca_drop';
 
 export const LISTA_LOCAIS = 'lista_locais';
+export const LISTA_LOCAIS_DROP = 'lista_locais_drop';
+
+
+export const MODIFICA_DATA_INTERVENCAO = 'modifica_data_intervencao';
+export const MODIFICA_VALOR = 'modifica_valor' ;
+export const MODIFICA_DESCRICAO_INTERVENCAO = 'modifica_descricao_intervencao' ;
+export const MODIFICA_VEICULO_INTERVENCAO = 'modifica_veiculo_intervencao';
+export const MODIFICA_PECA_INTERVENCAO = 'modifica_peca_intervencao';
+export const MODIFICA_LOCAL_INTERVENCAO = 'modifica_local_intervencao';
+export const ADICIONA_INTERVENCAO_ERRO = 'adiciona_intervencao_erro';
+export const ADICIONA_INTERVENCAO_SUCESSO = 'adicina_intervencao_sucesso';
+export const CADASTRO_INTERVENCAO_EM_ANDAMENTO = 'cadastro_intervencao_em_andamento';
+export const LISTA_INTERVENCAO_USUARIO = 'lista_intervencao_usuario';

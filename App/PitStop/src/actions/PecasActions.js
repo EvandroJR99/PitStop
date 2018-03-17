@@ -46,7 +46,7 @@ export const cadastraPeca = ({ peca, descricaoPeca }) => {
                 } else {
                     //adiciona o peca
                     firebase.database().ref(`/pecas/${pecaB64}`)
-                        .push({ nomePeca: peca, descricaoPeca: descricaoPeca })
+                        .set({ nomePeca: peca, descricaoPeca: descricaoPeca })
                         .then(() => adicionaPecaSucesso(dispatch))
                         .catch(erro => adicionaPecaErro(erro.message, dispatch))
                 }
@@ -91,7 +91,6 @@ const adicionaPecaSucesso = (dispatch) => {
 export const PecasFetchDropdown = () => {
 
     return (dispatch) => {
-
         firebase.database().ref(`/pecas/`)
             .on("value", snapshot => {
                 dispatch({ type: LISTA_PECA_DROP, payload: snapshotToArray(snapshot) })

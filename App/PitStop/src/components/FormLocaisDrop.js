@@ -3,15 +3,22 @@ import { Image, View, Text, TextInput, Button, StatusBar, ActivityIndicator } fr
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { connect } from 'react-redux';
 
+import { Dropdown } from 'react-native-material-dropdown';
+import { LISTA_LOCAL_DROP } from '../actions/types';
 
 import {
 	modificaNomeLocal,
 	modificaResponsavel,
 	modificaEndereco,
-	cadastraLocal
+	cadastraLocal,
+	LocaisFecthDropdown 
 } from '../actions/LocaisActions';
 
  class formLocais extends Component {
+
+	componentWillMount() {
+		this.props.LocaisFecthDropdown();
+	}
 
 	_cadastraLocal() {
 
@@ -45,6 +52,11 @@ import {
 					scrollEnabled={false}
 				>
 					<View style={{ flex: 1, justifyContent: 'center' }}>
+
+						<View>
+                            <Text>Escolha o locais</Text>
+                            <Dropdown dropdownPosition='0' label='selecione a local' data={this.props.dadosLocal} valueExtractor ={({ nomeLocal }) => nomeLocal}/* valueExtractor={({ placa }) => placa}*//>
+                        </View>
 
 						<TextInput
 							value={this.props.nomeLocal}
@@ -87,7 +99,8 @@ const mapStateToProps = state => {
 			endereco: state.LocaisReducer.endereco,
 			adiciona_local_sucesso: state.LocaisReducer.adiciona_local_sucesso,
 			adiciona_local_erro: state.LocaisReducer.adiciona_local_erro,
-			loading_cadastro: state.LocaisReducer.cadastro_em_andamento_local
+			loading_cadastro: state.LocaisReducer.cadastro_em_andamento_local,
+			dadosLocal: state.ListaLocaisReducer.dadosLocal
 		}
 	);
 }
@@ -98,6 +111,7 @@ export default connect(
 		modificaNomeLocal,
 		modificaResponsavel,
 		modificaEndereco,
-		cadastraLocal
+		cadastraLocal,
+		LocaisFecthDropdown 
 	}
 )(formLocais);

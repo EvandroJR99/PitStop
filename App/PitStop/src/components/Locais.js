@@ -21,7 +21,7 @@ class Locais extends Component {
     }
 
     criaFonteDeDados(locais) {
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2, r3) => r1 !== r2 !== r3})
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
 
         this.fonteDeDados = ds.cloneWithRows(locais)
         console.log("fonte de dados", this.fonteDeDados)

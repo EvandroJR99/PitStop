@@ -2,23 +2,30 @@ import {
     MODIFICA_DESCRICAO_INTERVENCAO,
     MODIFICA_VALOR,
     MODIFICA_DATA_INTERVENCAO,
-    AUTOMOVEL_ESCOLHIDO,
-    MODIFICA_PECA,
-    MODIFICA_DESCRICAO_PECA,
-    ADICIONA_PECA_ERRO
+    MODIFICA_VEICULO_INTERVENCAO,
+    MODIFICA_PECA_INTERVENCAO,
+    MODIFICA_LOCAL_INTERVENCAO,
+    ADICIONA_INTERVENCAO_ERRO,
+    ADICIONA_INTERVENCAO_SUCESSO,
+    CADASTRO_INTERVENCAO_EM_ANDAMENTO,
+    LISTA_INTERVENCAO_USUARIO
 } from '../actions/types'
 
+
+
 const INITIAL_STATE = {
-    automovel_intervencao: '',
     descricao_intervencao: '',
     valor_intervencao: '',
-    data_intervencao: '',
-    peca: '',
-    descricaoPeca: ''
+    data_intervencao: '',    
+    veiculo_intervencao: '',
+    peca_intervencao: '',
+    local_intervencao: '',
+    adiciona_intervencao_erro: '',
+    cadastro_intervencao_em_andamento: false
 }
 
 export default (state = INITIAL_STATE, action) => {
-
+    console.log(action);
     switch (action.type) {
         case MODIFICA_DESCRICAO_INTERVENCAO:
             return { ...state, descricao_intervencao: action.payload }
@@ -26,12 +33,28 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, valor_intervencao: action.payload }
         case MODIFICA_DATA_INTERVENCAO:
             return { ...state, data_intervencao: action.payload }
-        case AUTOMOVEL_ESCOLHIDO:
-            return { ...state, automovel_intervencao: action.payload }
-        case MODIFICA_PECA:
-            return { ...state, peca: action.payload }
-        case MODIFICA_DESCRICAO_PECA:
-            return { ...state, descricaoPeca: action.payload }
+        case MODIFICA_VEICULO_INTERVENCAO:
+            return { ...state, veiculo_intervencao: action.payload }
+        case MODIFICA_PECA_INTERVENCAO:
+            return { ...state, peca_intervencao: action.payload }
+        case MODIFICA_LOCAL_INTERVENCAO:
+            return { ...state, local_intervencao: action.payload }
+        case ADICIONA_INTERVENCAO_ERRO:
+            return { ...state, adiciona_intervencao_erro: action.payload, adiciona_intervencao_erro: false }
+        case ADICIONA_INTERVENCAO_SUCESSO:
+            return {
+                ...state,
+                descricao_intervencao: '',
+                valor_intervencao: '',
+                data_intervencao: '',    
+                veiculo_intervencao: '',
+                peca_intervencao: '',
+                local_intervencao: '',
+                adiciona_intervencao_erro: '',
+                cadastro_intervencao_em_andamento: false
+            }
+        case CADASTRO_INTERVENCAO_EM_ANDAMENTO:
+            return { ...state, cadastro_intervencao_em_andamento: true }
         default:
             return state;
     }

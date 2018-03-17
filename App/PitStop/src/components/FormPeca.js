@@ -75,7 +75,7 @@ class formPeca extends Component {
 					</View>
 				</KeyboardAwareScrollView>
 				<View style={{ flex: 6 }}>
-					{this.renderBtnCadastro()}
+					{<Button title="Próximo" color="#F9A825" onPress={() => { Actions.formLocais(); }} />}
 				</View>
 
 			</View>

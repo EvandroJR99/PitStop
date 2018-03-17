@@ -10,7 +10,8 @@ import DatePicker from 'react-native-datepicker';
 
 import { connect } from 'react-redux';
 
-import { modificaDataRevisao} from '../actions/AppActions';
+//import { modificaDataRevisao} from '../actions/AppActions';
+import { modificaDataIntervencao } from '../actions/IntervencaoActions';
 
 class Calendario extends Component {
 
@@ -31,7 +32,7 @@ class Calendario extends Component {
       <View style={styles.container}>
      <DatePicker
           style={{width: 290, paddingTop: 5}}
-          date={this.props.data_revisao}
+          date={this.props.data_intervencao}
           mode="date"
           placeholder="Data da Intervenção"
           format="DD-MM-YYYY"
@@ -39,7 +40,7 @@ class Calendario extends Component {
           maxDate="01-01-2020"
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
-          onDateChange={(date) => this.props.modificaDataRevisao(date)}
+          onDateChange={(date) => this.props.modificaDataIntervencao(date)}
         />
       </View>
     );
@@ -68,7 +69,7 @@ const mapStateToProps = state => {
 
 	return (
 		{
-			data_revisao : state.AppReducers.data_revisao
+			data_intervencao : state.IntervencaoReducers.data_intervencao
 		}
 	);
 }
@@ -76,6 +77,6 @@ const mapStateToProps = state => {
 export default connect(
 	mapStateToProps,
 	{
-		modificaDataRevisao
+		modificaDataIntervencao
 	}
 )(Calendario);

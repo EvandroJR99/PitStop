@@ -4,7 +4,8 @@ import {
     MODIFICA_ENDERECO,
     ADICIONA_LOCAL_SUCESSO,
     ADICIONA_LOCAL_ERRO,
-    CADASTRO_EM_ANDAMENTO
+    CADASTRO_EM_ANDAMENTO,
+    CADASTRO_EM_ANDAMENTO_LOCAL
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -12,7 +13,8 @@ const INITIAL_STATE = {
     responsavel: '',
     endereco: '',
     adiciona_local_sucesso: '',
-    cadastro_em_andamento: false
+    cadastro_em_andamento: false,
+    cadastro_em_andamento_local: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -32,10 +34,10 @@ export default (state = INITIAL_STATE, action) => {
                 endereco: '',
                 adicona_local_erro: '',
                 adiciona_local_sucesso: '',
-                cadastro_em_andamento: false
+                cadastro_em_andamento_local: false
             }
         case CADASTRO_EM_ANDAMENTO:
-            return { ...state, cadastro_em_andamento: true }
+            return { ...state, cadastro_em_andamento_local: true }
         default:
             return state;
     }
