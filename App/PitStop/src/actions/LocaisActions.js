@@ -83,14 +83,14 @@ const adicionaLocalSucesso = (dispatch) => {
         }
     );
 
-    Alert.alert(
+ /*   Alert.alert(
         'Local',
         'Local adicionado com sucesso!',
         [
             { text: 'OK', onPress: () => Actions.principal() },
         ],
         { cancelable: false }
-    )
+    )*/
 }
 
 export const LocaisFetchDropdown = () => {
