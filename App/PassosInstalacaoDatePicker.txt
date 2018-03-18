@@ -26,3 +26,5 @@ react-native run-android
 
 ----------------------------------------
 npm install --save lodash
+npm install react-native-star-rating --save
+npm install --save react-native-modal
