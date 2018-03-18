@@ -40,9 +40,9 @@ class Automoveis extends Component {
                         </View>
                     )}
                 />
-                <View style={{ flex: 3 }}>
+            
                     <ActionButton buttonColor="rgba(245, 127, 23, 1)" shadowStyle={{ elevation: 4 }} onPress={() => Actions.formVeiculo()} />
-                </View>
+             
                 
             </View>
 

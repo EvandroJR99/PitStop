@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Octicons';
 import { Actions } from 'react-native-router-flux';
 import Modal from "react-native-modal";
-
+import StarRating from 'react-native-star-rating';
 
 import {
     modificaVeiculoIntervencao,
@@ -20,6 +20,7 @@ import {
     modificaPecaIntervencao,
     modificaLocalIntervencao,
     modificaDataIntervencao,
+    modificaStarIntervencao,
     cadastraIntervencao
 } from '../actions/IntervencaoActions';
 
@@ -35,12 +36,31 @@ import {
     modificaNomeLocal,
     modificaResponsavel,
     modificaEndereco,
-    cadastraLocal,
+    cadastraLocalInt,
     LocaisFetchDropdown
 } from '../actions/LocaisActions';
 
 
 class formIntervencoes extends Component {
+
+    //ESTRELA
+    constructor(props) {
+        super(props);
+        this.state = {
+            starCount: 0
+        };
+    }
+
+    onStarRatingPress(rating) {
+        this.setState({
+            starCount: rating
+        });
+        this.props.modificaStarIntervencao(rating);
+    }
+
+
+
+    //CADASTRO PECA, LOCAL E INTERVENCAO
     state = {
         isModalVisiblePeca: false,
         isModalVisibleLocal: false
@@ -54,9 +74,9 @@ class formIntervencoes extends Component {
 
     _cadastraIntervencao() {
 
-        const { descricao_intervencao, valor_intervencao, data_intervencao, veiculo_intervencao, peca_intervencao, local_intervencao } = this.props;
+        const { descricao_intervencao, valor_intervencao, data_intervencao, veiculo_intervencao, peca_intervencao, local_intervencao, star_intervencao } = this.props;
 
-        this.props.cadastraIntervencao({ descricao_intervencao, valor_intervencao, data_intervencao, veiculo_intervencao, peca_intervencao, local_intervencao });
+        this.props.cadastraIntervencao({ descricao_intervencao, valor_intervencao, data_intervencao, veiculo_intervencao, peca_intervencao, local_intervencao, star_intervencao });
     }
     _cadastraPeca() {
 
@@ -65,11 +85,11 @@ class formIntervencoes extends Component {
         this.props.cadastraPeca({ peca, descricaoPeca });
         this._toggleModalPeca();
     }
-    _cadastraLocal() {
+    _cadastraLocalInt() {
 
         const { nomeLocal, responsavel, endereco } = this.props;
 
-        this.props.cadastraLocal({ nomeLocal, responsavel, endereco });
+        this.props.cadastraLocalInt({ nomeLocal, responsavel, endereco });
         this._toggleModalLocal();
     }
 
@@ -85,15 +105,6 @@ class formIntervencoes extends Component {
 
     }
 
-    /*   renderBtnCadastroPeca() {
-           if (this.props.loading_cadastro) {
-                   this.setState({ isModalVisible: !this.state.isModalVisible })
-           }
-           return (
-              
-           )
-       }*/
-
 
 
 
@@ -102,21 +113,8 @@ class formIntervencoes extends Component {
         this.props.veiculosUsuarioFetchDropdown();
         this.props.PecasFetchDropdown();
         this.props.LocaisFetchDropdown();
-        // this.criaFonteDeDados(this.props.veiculos)
     }
-    /*
-        componentWillReceiveProps(nextProps) {
-           // this.criaFonteDeDados(nextProps.veiculos)
-        }
-    
-        criaFonteDeDados(veiculos) {
-            const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
-    
-            this.fonteDeDados = ds.cloneWithRows(veiculos)
-            console.log(this.fonteDeDados)
-        }
-    
-    */
+
 
 
 
@@ -133,7 +131,7 @@ class formIntervencoes extends Component {
                 <KeyboardAwareScrollView
                     style={{ backgroundColor: '#FFF' }}
                     resetScrollToCoords={{ x: 0, y: 0 }}
-                    scrollEnabled={false}
+                    enableAutomaticScroll={true}
                 >
 
 
@@ -185,7 +183,7 @@ class formIntervencoes extends Component {
                                 <Modal isVisible={this.state.isModalVisiblePeca} backdropColor='white' avoidKeyboard='false' backdropOpacity='0' >
                                     <View style={{ flex: 4, justifyContent: "center" }}>
                                         <View style={{ elevation: 4, marginBottom: 6, backgroundColor: '#F5F5F5', padding: 10, justifyContent: "center", borderBottomWidth: 20, borderTopWidth: 20, borderRadius: 10, borderColor: "rgba(0, 0, 0, 0.1)" }}>
-                                            <Text style={{ fontSize: 16, textAlign: 'center', paddingBottom: 10}}>Cadastro de Peça</Text>
+                                            <Text style={{ fontSize: 16, textAlign: 'center', paddingBottom: 10 }}>Cadastro de Peça</Text>
                                             <View>
                                                 <TextInput
                                                     value={this.props.peca}
@@ -229,7 +227,7 @@ class formIntervencoes extends Component {
                                 </TouchableOpacity><Modal isVisible={this.state.isModalVisibleLocal} backdropColor='white' avoidKeyboard='false' backdropOpacity='0' >
                                     <View style={{ flex: 4, justifyContent: "center" }}>
                                         <View style={{ elevation: 4, marginBottom: 6, backgroundColor: '#F5F5F5', padding: 10, justifyContent: "center", borderBottomWidth: 20, borderTopWidth: 20, borderRadius: 10, borderColor: "rgba(0, 0, 0, 0.1)" }}>
-                                            <Text style={{ fontSize: 16, textAlign: 'center', paddingBottom: 10}}>Cadastro de Local</Text>
+                                            <Text style={{ fontSize: 16, textAlign: 'center', paddingBottom: 10 }}>Cadastro de Local</Text>
                                             <View>
                                                 <TextInput
                                                     value={this.props.nomeLocal}
@@ -249,9 +247,9 @@ class formIntervencoes extends Component {
                                                     placeholder='Endereço'
                                                     onChangeText={texto => this.props.modificaEndereco(texto)}
                                                 />
-                                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                                     <Button title="Cancelar" color="#F9A825" onPress={() => this._toggleModalLocal()} />
-                                                    <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraLocal()} />
+                                                    <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraLocalInt()} />
                                                 </View>
                                             </View>
                                         </View>
@@ -262,11 +260,28 @@ class formIntervencoes extends Component {
 
                         <CalendarioInt />
 
+
+                        <Text style={{ paddingTop:10, fontSize: 18, height: 45 }}>Como você avalia esse serviço ?</Text>
+                        <View style={{ paddingTop:10 }}>
+                            <StarRating
+                                disabled={false}
+                                emptyStar={'star-border'}
+                                fullStar={'star'}
+                                iconSet={'MaterialIcons'}
+                                maxStars={5}
+                                rating={this.state.starCount}
+                                selectedStar={(rating) => this.onStarRatingPress(rating)}
+                                fullStarColor={'orange'}
+                                starPadding={10}
+                            />
+                        </View>
+
+
+
                         <Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10 }}>{ /*this.props.erroCadastro*/}</Text>
                     </View>
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        {this.renderBtnCadastro()}
-                    </View>
+                       {this.renderBtnCadastro()}
+                   
                 </KeyboardAwareScrollView>
 
             </View>
@@ -286,6 +301,7 @@ const mapStateToProps = state => {
             veiculo_intervencao: state.IntervencaoReducers.veiculo_intervencao,
             peca_intervencao: state.IntervencaoReducers.peca_intervencao,
             local_intervencao: state.IntervencaoReducers.local_intervencao,
+            star_intervencao: state.IntervencaoReducers.star_intervencao,
             adiciona_intervencao_erro: state.IntervencaoReducers.adiciona_intervencao_erro,
             cadastro_intervencao_em_andamento: state.IntervencaoReducers.cadastro_intervencao_em_andamento,
 
@@ -321,6 +337,7 @@ export default connect(
         modificaPecaIntervencao,
         modificaLocalIntervencao,
         modificaDataIntervencao,
+        modificaStarIntervencao,
         cadastraIntervencao,
 
         //VEICULO
@@ -336,7 +353,7 @@ export default connect(
         modificaNomeLocal,
         modificaResponsavel,
         modificaEndereco,
-        cadastraLocal,
+        cadastraLocalInt,
         LocaisFetchDropdown
     }
 )(formIntervencoes);

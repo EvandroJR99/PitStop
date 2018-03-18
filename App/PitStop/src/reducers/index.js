@@ -7,6 +7,7 @@ import PecasReducer from './PecasReducer';
 import ListaPecaReducer from './ListaPecaReducer';
 import ListaLocaisReducer from './ListaLocaisReducer';
 import IntervencaoReducers from './IntervencaoReducers';
+import ListaIntervencoesReducer from './ListaIntervencoesReducer';
 
 export default combineReducers({
     AutenticacaoReducer,
@@ -16,6 +17,7 @@ export default combineReducers({
     PecasReducer,
     ListaPecaReducer,
     ListaLocaisReducer,
-    IntervencaoReducers
+    IntervencaoReducers,
+    ListaIntervencoesReducer
 
 });

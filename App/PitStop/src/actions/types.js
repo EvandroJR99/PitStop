@@ -46,7 +46,10 @@ export const MODIFICA_DESCRICAO_INTERVENCAO = 'modifica_descricao_intervencao' ;
 export const MODIFICA_VEICULO_INTERVENCAO = 'modifica_veiculo_intervencao';
 export const MODIFICA_PECA_INTERVENCAO = 'modifica_peca_intervencao';
 export const MODIFICA_LOCAL_INTERVENCAO = 'modifica_local_intervencao';
+export const MODIFICA_STAR_INTERVENCAO = 'modifica_star_intervencao';
 export const ADICIONA_INTERVENCAO_ERRO = 'adiciona_intervencao_erro';
 export const ADICIONA_INTERVENCAO_SUCESSO = 'adicina_intervencao_sucesso';
 export const CADASTRO_INTERVENCAO_EM_ANDAMENTO = 'cadastro_intervencao_em_andamento';
 export const LISTA_INTERVENCAO_USUARIO = 'lista_intervencao_usuario';
+
+export const MEDIA_LOCAL = 'media_local';

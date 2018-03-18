@@ -5,6 +5,7 @@ import {
     MODIFICA_VEICULO_INTERVENCAO,
     MODIFICA_PECA_INTERVENCAO,
     MODIFICA_LOCAL_INTERVENCAO,
+    MODIFICA_STAR_INTERVENCAO,
     ADICIONA_INTERVENCAO_ERRO,
     ADICIONA_INTERVENCAO_SUCESSO,
     CADASTRO_INTERVENCAO_EM_ANDAMENTO,
@@ -16,10 +17,11 @@ import {
 const INITIAL_STATE = {
     descricao_intervencao: '',
     valor_intervencao: '',
-    data_intervencao: '',    
+    data_intervencao: '',
     veiculo_intervencao: '',
     peca_intervencao: '',
     local_intervencao: '',
+    star_intervencao: '',
     adiciona_intervencao_erro: '',
     cadastro_intervencao_em_andamento: false
 }
@@ -39,6 +41,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, peca_intervencao: action.payload }
         case MODIFICA_LOCAL_INTERVENCAO:
             return { ...state, local_intervencao: action.payload }
+        case MODIFICA_STAR_INTERVENCAO:
+            return { ...state, star_intervencao: action.payload }
         case ADICIONA_INTERVENCAO_ERRO:
             return { ...state, adiciona_intervencao_erro: action.payload, adiciona_intervencao_erro: false }
         case ADICIONA_INTERVENCAO_SUCESSO:
@@ -46,10 +50,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 descricao_intervencao: '',
                 valor_intervencao: '',
-                data_intervencao: '',    
+                data_intervencao: '',
                 veiculo_intervencao: '',
                 peca_intervencao: '',
                 local_intervencao: '',
+                star_intervencao: '',
                 adiciona_intervencao_erro: '',
                 cadastro_intervencao_em_andamento: false
             }

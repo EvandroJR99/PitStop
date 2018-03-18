@@ -11,11 +11,15 @@ import {
     MODIFICA_VEICULO_INTERVENCAO,
     MODIFICA_PECA_INTERVENCAO,
     MODIFICA_LOCAL_INTERVENCAO,
+    MODIFICA_STAR_INTERVENCAO,
     ADICIONA_INTERVENCAO_ERRO,
     ADICIONA_INTERVENCAO_SUCESSO,
     CADASTRO_INTERVENCAO_EM_ANDAMENTO,
     LISTA_INTERVENCAO_USUARIO
 } from './types';
+
+
+
 
 export const modificaDataIntervencao = texto => {
     return {
@@ -60,14 +64,21 @@ export const modificaLocalIntervencao = texto => {
     }
 }
 
-export const cadastraIntervencao = ({ descricao_intervencao, valor_intervencao, data_intervencao, veiculo_intervencao, peca_intervencao, local_intervencao  }) => {
+export const modificaStarIntervencao = texto => {
+    return {
+        type: MODIFICA_STAR_INTERVENCAO,
+        payload: texto
+    }
+}
+
+export const cadastraIntervencao = ({ descricao_intervencao, valor_intervencao, data_intervencao, veiculo_intervencao, peca_intervencao, local_intervencao, star_intervencao  }) => {
     return dispatch => {
         dispatch({ type: CADASTRO_INTERVENCAO_EM_ANDAMENTO  });
 
 
                     //intervencaos adicionada
                     firebase.database().ref(`/intervencoes/`)
-                        .push({ dataInter: data_intervencao, valorInter: valor_intervencao, descricaoInter: descricao_intervencao, veiculoInter: veiculo_intervencao, pecaInter: peca_intervencao, localInter: local_intervencao })
+                        .push({ dataInter: data_intervencao, valorInter: valor_intervencao, descricaoInter: descricao_intervencao, veiculoInter: veiculo_intervencao, pecaInter: peca_intervencao, localInter: local_intervencao, starInter: star_intervencao })
                       //  .then(() => adicionaIntervencaoSucesso(dispatch))
                       //  .catch(erro => adicionaIntervencaoErro(erro.message, dispatch))
 
@@ -78,7 +89,7 @@ export const cadastraIntervencao = ({ descricao_intervencao, valor_intervencao, 
                     let emailUsuarioB64 = b64.encode(currentUser.email);
 
                     firebase.database().ref(`/usuario_intervencoes/${emailUsuarioB64}`)
-                        .push({ dataInter: data_intervencao, valorInter: valor_intervencao, descricaoInter: descricao_intervencao, veiculoInter: veiculo_intervencao, pecaInter: peca_intervencao, localInter: local_intervencao })
+                        .push({ dataInter: data_intervencao, valorInter: valor_intervencao, descricaoInter: descricao_intervencao, veiculoInter: veiculo_intervencao, pecaInter: peca_intervencao, localInter: local_intervencao, starInter: star_intervencao })
                         .then(() => adicionaIntervencaoSucesso(dispatch))
                         .catch(erro => adicionaIntervencaoErro(erro.message, dispatch))
                 

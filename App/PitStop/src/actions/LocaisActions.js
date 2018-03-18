@@ -35,6 +35,35 @@ export const modificaEndereco = (texto) => {
     }
 }
 
+export const cadastraLocalInt = ({ nomeLocal, responsavel, endereco }) => {
+    return dispatch => {
+        dispatch({ type: CADASTRO_EM_ANDAMENTO_LOCAL });
+        let enderecoB64 = b64.encode(endereco);
+
+        firebase.database().ref(`/locais/${enderecoB64}`)
+            .once('value')
+            .then(snapshot => {
+
+                if (snapshot.val()) {
+                    dispatch(
+                        {
+                            type: ADICIONA_LOCAL_ERRO,
+                            payload: 'Este local ja esta cadastrado.'
+                        }
+                    )
+                } else {
+                    //adiciona o local
+                    firebase.database().ref(`/locais/${enderecoB64}`)
+                        .set({ nomeLocal: nomeLocal, responsavel: responsavel, endereco: endereco })
+                        .then(() => adicionaLocalSucessoInt(dispatch))
+                        .catch(erro => adicionaLocalErro(erro.message, dispatch))
+                }
+            })
+
+
+    }
+}
+
 export const cadastraLocal = ({ nomeLocal, responsavel, endereco }) => {
     return dispatch => {
         dispatch({ type: CADASTRO_EM_ANDAMENTO_LOCAL });
@@ -83,14 +112,23 @@ const adicionaLocalSucesso = (dispatch) => {
         }
     );
 
- /*   Alert.alert(
+    Alert.alert(
         'Local',
         'Local adicionado com sucesso!',
         [
             { text: 'OK', onPress: () => Actions.principal() },
         ],
         { cancelable: false }
-    )*/
+    )
+}
+
+const adicionaLocalSucessoInt = (dispatch) => {
+
+    dispatch(
+        {
+            type: ADICIONA_LOCAL_SUCESSO
+        }
+    );
 }
 
 export const LocaisFetchDropdown = () => {
@@ -121,4 +159,21 @@ export const locaisFetch = () => {
                 dispatch({ type: LISTA_LOCAIS, payload: snapshot.val() })
             })
     }
+}
+
+export const recuperaInformacoes = (nomeLocal) => {
+
+    var numIntervencoes=0;
+    var somaStar=0;
+
+    return (dispatch) => {
+        firebase.database().ref(`/intervencoes`).child("localInter").equalTo(nomeLocal)
+        .on("value", snapshot)
+        var valorStar = snapshot.val().starInter;
+        numIntervencoes++;
+        somaStar += valorStar;
+        console.log("somastar:", somaStar);
+        console.log("numIntervencoes", numIntervencoes);
+    }
+
 }

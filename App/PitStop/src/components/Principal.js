@@ -59,7 +59,7 @@ const Principal = props => (
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'center', paddingTop: 15 }}>
                 <View style={{ paddingRight: 20 }}>
-                    <TouchableOpacity onPress={() => Actions.formIntervencoes()}>
+                    <TouchableOpacity onPress={() => Actions.intervencoes()}>
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
                             justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
@@ -71,7 +71,7 @@ const Principal = props => (
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <TouchableOpacity onPress={() => { }}>
+                    <TouchableOpacity  onPress={() => Actions.sobre()}>
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
                             justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
