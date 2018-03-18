@@ -182,10 +182,10 @@ class formIntervencoes extends Component {
                                 <TouchableOpacity onPress={this._toggleModalPeca}>
                                     <Icon name="plus-circle" size={30} color="#F9A825" />
                                 </TouchableOpacity>
-                                <Modal isVisible={this.state.isModalVisiblePeca} backdropColor='white' avoidKeyboard='false'/* backdropOpacity='100'*/ >
-                                    <View style={{ flex: 0, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                        <View style={{ width: 300, height: 300 }}>
-                                            <Text>Cadastro de Peça</Text>
+                                <Modal isVisible={this.state.isModalVisiblePeca} backdropColor='white' avoidKeyboard='false' backdropOpacity='0' >
+                                    <View style={{ flex: 4, justifyContent: "center" }}>
+                                        <View style={{ elevation: 4, marginBottom: 6, backgroundColor: '#F5F5F5', padding: 10, justifyContent: "center", borderBottomWidth: 20, borderTopWidth: 20, borderRadius: 10, borderColor: "rgba(0, 0, 0, 0.1)" }}>
+                                            <Text style={{ fontSize: 16, textAlign: 'center', paddingBottom: 10}}>Cadastro de Peça</Text>
                                             <View>
                                                 <TextInput
                                                     value={this.props.peca}
@@ -199,11 +199,12 @@ class formIntervencoes extends Component {
                                                     placeholder='Descrição peça'
                                                     onChangeText={texto => this.props.modificaDescricaoPeca(texto)}
                                                 />
+                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                                    <Button title="Cancelar" color="#F9A825" onPress={() => this._toggleModalPeca()} />
+                                                    <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraPeca()} />
+                                                </View>
                                             </View>
-                                            <View>
-                                                <Button title="Cancelar" color="#F9A825" onPress={() => this._toggleModalPeca()} />
-                                                <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraPeca()} />
-                                            </View>
+
                                         </View>
                                     </View>
                                 </Modal>
@@ -225,10 +226,10 @@ class formIntervencoes extends Component {
                             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                                 <TouchableOpacity onPress={this._toggleModalLocal}>
                                     <Icon name="plus-circle" size={30} color="#F9A825" />
-                                </TouchableOpacity><Modal isVisible={this.state.isModalVisibleLocal} backdropColor='white' avoidKeyboard='false'/* backdropOpacity='100'*/ >
-                                    <View style={{ flex: 0, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                        <View style={{ width: 300, height: 300 }}>
-                                            <Text>Cadastro de Local</Text>
+                                </TouchableOpacity><Modal isVisible={this.state.isModalVisibleLocal} backdropColor='white' avoidKeyboard='false' backdropOpacity='0' >
+                                    <View style={{ flex: 4, justifyContent: "center" }}>
+                                        <View style={{ elevation: 4, marginBottom: 6, backgroundColor: '#F5F5F5', padding: 10, justifyContent: "center", borderBottomWidth: 20, borderTopWidth: 20, borderRadius: 10, borderColor: "rgba(0, 0, 0, 0.1)" }}>
+                                            <Text style={{ fontSize: 16, textAlign: 'center', paddingBottom: 10}}>Cadastro de Local</Text>
                                             <View>
                                                 <TextInput
                                                     value={this.props.nomeLocal}
@@ -248,10 +249,10 @@ class formIntervencoes extends Component {
                                                     placeholder='Endereço'
                                                     onChangeText={texto => this.props.modificaEndereco(texto)}
                                                 />
-                                            </View>
-                                            <View>
-                                                <Button title="Cancelar" color="#F9A825" onPress={() => this._toggleModalLocal()} />
-                                                <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraLocal()} />
+                                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                                    <Button title="Cancelar" color="#F9A825" onPress={() => this._toggleModalLocal()} />
+                                                    <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraLocal()} />
+                                                </View>
                                             </View>
                                         </View>
                                     </View>
@@ -263,7 +264,7 @@ class formIntervencoes extends Component {
 
                         <Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10 }}>{ /*this.props.erroCadastro*/}</Text>
                     </View>
-                    <View style={{ width: 100, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                         {this.renderBtnCadastro()}
                     </View>
                 </KeyboardAwareScrollView>
