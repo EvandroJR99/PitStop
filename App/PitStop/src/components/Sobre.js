@@ -15,26 +15,22 @@ export default class Sobre extends Component {
     render() {
         return (
             <View  style={{ padding: 20}}> 
-                <Text style={{ paddingTop: 10, fontSize: 18 }}>   O Pit Stop é um aplicativo para gerenciamento pessoal de veiculos.
+                <Text style={{ paddingTop: 10, fontSize: 18 }}> O Pit Stop é um aplicativo para gerenciamento pessoal de automóveis.
                 </Text>
 
-                <Text style={{ paddingTop: 10, fontSize: 18 }}>   Atualmente esta na versão 1.0.
+                <Text style={{ paddingTop: 10, fontSize: 18 }}> Atualmente esta na versão 1.0.
                 </Text>
 
-                <Text style={{ paddingTop: 10, fontSize: 18 }}>   Desenvolvedores: Amelia Alice, Evandro Cavalcante, Mariana Xavier e Michele Ascoli
+                <Text style={{ paddingTop: 10, fontSize: 18 }}> Informações uteis:
+                </Text>
+                <Text style={{ paddingTop: 10, fontSize: 18 }}> Automóveis -  Contém a lista de todos os automóveis do usuário, e permite a inserção de um automóvel.
+                </Text>
+                <Text style={{ paddingTop: 10, fontSize: 18 }}> Locais -  Contém todos os locais disponíveis no banco de dados PitStop, e permite a inclusão de um estabelecimento.
+                </Text>
+                <Text style={{ paddingTop: 10, fontSize: 18 }}> Intervenções - Contém todas as alterações que foram realizadas nos automóveis do usuário, e permite a inclusão de uma nova intervenção.
                 </Text>
 
-                <Text style={{ paddingTop: 10, fontSize: 18 }}>
-                    Informações uteis:
-                </Text>
-                <Text style={{ paddingTop: 10, fontSize: 18 }}>
-                         Automóveis -  Contém a lista de todos os veículos do usuário, e permite a inserção de um veiculo.
-                </Text>
-                <Text style={{ paddingTop: 10, fontSize: 18 }}>
-                         Locais -  Contém todos os locais disponíveis no banco de dados PitStop, e permite a inclusão de um estabelecimento.
-                </Text>
-                <Text style={{ paddingTop: 10, fontSize: 18 }}>
-                         Intervenções - Contém todas as alterações que foram realizadas nos automóveis do usuário, e pode ser adicionada uma intervenção.
+                 <Text style={{ paddingTop: 10, fontSize: 18 }}> Desenvolvedores: Amelia Alice, Evandro Cavalcante, Mariana Xavier e Michele Ascoli
                 </Text>
 
             </View>

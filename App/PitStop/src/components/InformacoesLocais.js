@@ -40,7 +40,7 @@ export default class InformacoesLocais extends Component {
 
                     }
                     var media = somaStar / numIntervencoes;
-                    this.setState({ starCount: media })
+                    this.setState({ starCount: media, numAvaliacao: numIntervencoes })
                 })
 
 
@@ -55,7 +55,8 @@ export default class InformacoesLocais extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            starCount: 0
+            starCount: 0,
+            numAvaliacao: 0
         };
     }
 
@@ -67,9 +68,9 @@ export default class InformacoesLocais extends Component {
         console.log(this.props)
         return (
             <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#CCC" }}>
-                <Text style={{ paddingTop:20, fontSize: 18 }} >Nome Local: {this.props.nomeLocal}</Text>
-                <Text style={{ paddingTop:20, fontSize: 18 }}>Endereco: {this.props.enderecoLocal}</Text>
-                <Text style={{ paddingTop:20, fontSize: 18 }}>Avalição dos usuários:</Text>
+                <Text style={{ paddingTop:20, fontSize: 18 }} >Nome do Estabelecimento: {this.props.nomeLocal}</Text>
+                <Text style={{ paddingTop:20, fontSize: 18 }}>Endereço: {this.props.enderecoLocal}</Text>
+                <Text style={{ paddingTop:20, fontSize: 18 }}>Avaliação dos usuários: {this.state.numAvaliacao}</Text>
                 <View  style={{ paddingTop: 10 }}>
                     <StarRating
                         disabled={false}

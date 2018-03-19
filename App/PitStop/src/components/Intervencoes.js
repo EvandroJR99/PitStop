@@ -36,8 +36,8 @@ class Intervencoes extends Component {
                     dataSource={this.fonteDeDados}
                     renderRow={data => (
                         <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#CCC" }}>
-                            <Text style={{ fontSize: 18 }}>Automovel: {data.veiculoInter}</Text>
-                            <Text style={{ fontSize: 16 }}> Data {data.dataInter} </Text>
+                            <Text style={{ fontSize: 18 }}>Automóvel: {data.veiculoInter}</Text>
+                            <Text style={{ fontSize: 16 }}> Data: {data.dataInter} </Text>
                             <Text style={{ fontSize: 16 }}> Descrição: {data.descricaoInter}</Text>
                             <Text style={{ fontSize: 16 }}> Local: {data.localInter}</Text>
                             <Text style={{ fontSize: 16 }}> Valor: {data.valorInter}</Text>

@@ -32,7 +32,7 @@ class Locais extends Component {
 
     renderRow(locais) {
         return (
-            <TouchableHighlight
+            <TouchableHighlight  underlayColor="rgba(0, 0, 0, 0)"
                 onPress={() => Actions.informacoesLocais({ title: locais.nomeLocal, nomeLocal: locais.nomeLocal, enderecoLocal: locais.endereco}) }
             >
                 <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#CCC" }}>

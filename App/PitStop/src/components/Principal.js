@@ -22,7 +22,7 @@ const Principal = props => (
 
 
                 <View style={{ justifyContent: 'center', marginRight: 20 }}>
-                    <TouchableHighlight onPress={
+                    <TouchableHighlight  underlayColor="rgba(0, 0, 0, 0)" onPress={
                         () => firebase.auth().signOut().then(() => Actions.formLogin())
                     }>
                         <Icon name="logout" size={25} color="#fff" />

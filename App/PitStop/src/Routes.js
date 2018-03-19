@@ -24,8 +24,8 @@ export default props => (
         <Scene key='formVeiculo' component={FormVeiculo} title="Cadastro" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='locais' component={Locais} title="Locais" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='formLocais' component={FormLocais} title="Locais" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
-        <Scene key='intervencoes' component={Intervencoes} title="Intervencoes" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
-        <Scene key='formIntervencoes' component={FormIntervencoes} title="Intervenções" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='intervencoes' component={Intervencoes} title="Intervenções" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='formIntervencoes' component={FormIntervencoes} title="Intervenção" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='formPeca' component={FormPeca} title="Pecas" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='informacoesLocais' component={InformacoesLocais} title="Informações do Local" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='sobre' component={Sobre} title="Sobre" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
