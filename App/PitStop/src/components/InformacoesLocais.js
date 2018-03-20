@@ -76,6 +76,7 @@ export default class InformacoesLocais extends Component {
                         disabled={false}
                         emptyStar={'star-border'}
                         fullStar={'star'}
+                        halfStar={'star-half'}
                         iconSet={'MaterialIcons'}
                         maxStars={5}
                         rating={this.state.starCount}
