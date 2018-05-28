@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2017-11-08" view-index="0" gantt-divider-location="755" resource-divider-location="300" version="2.8.1" locale="pt_BR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2017-11-01" view-index="0" gantt-divider-location="671" resource-divider-location="300" version="2.8.8" locale="pt_BR">
     <description/>
-    <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nome" width="334" order="0"/>
-        <field id="tpd4" name="Data inicial" width="209" order="1"/>
-        <field id="tpd5" name="Data final" width="208" order="2"/>
+    <view zooming-state="default:9" id="gantt-chart">
+        <field id="tpd3" name="Nome" width="427" order="0"/>
+        <field id="tpd4" name="Data inicial" width="130" order="1"/>
+        <field id="tpd5" name="Data final" width="110" order="2"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Nome" width="210" order="0"/>
@@ -34,13 +34,17 @@
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
         <task id="0" name="Levantamento de Requisitos" color="#8cb6ce" meeting="false" start="2017-11-08" duration="5" complete="0" expand="true"/>
-        <task id="4" name="Desenvolvimento do documento de requisitos" meeting="false" start="2017-11-15" duration="4" complete="0" expand="true"/>
+        <task id="4" name="Desenvolvimento do documento de requisitos" meeting="false" start="2017-11-15" duration="4" complete="100" expand="true"/>
         <task id="20" name="Elaboração dos diagramas de caso de uso e classe" meeting="false" start="2017-11-15" duration="4" complete="0" expand="true"/>
         <task id="7" name="Prototipação" meeting="false" start="2018-02-26" duration="3" complete="0" expand="true"/>
         <task id="9" name="Desenvolvimento de 50% dos requisitos" meeting="false" start="2018-03-05" duration="5" complete="0" expand="true"/>
-        <task id="12" name="Desenvolvimento de 90% dos requisitos" color="#8cb6ce" meeting="false" start="2018-03-12" duration="5" complete="0" expand="true"/>
-        <task id="15" name="Atualização de documentos" meeting="false" start="2018-03-19" duration="1" complete="0" expand="true"/>
+        <task id="12" name="Desenvolvimento de 90% dos requisitos" color="#8cb6ce" meeting="false" start="2018-03-12" duration="5" complete="0" thirdDate="2018-03-12" thirdDate-constraint="0" expand="true"/>
+        <task id="15" name="Atualização de documentos" meeting="false" start="2018-03-12" duration="6" complete="0" expand="true"/>
         <task id="19" name="Desenvolvimento do Plano de Teste e cronograma" meeting="false" start="2018-05-21" duration="6" complete="0" expand="true"/>
+        <task id="26" name="Desenvolvimento 100% dos requisistos" color="#8cb6ce" meeting="false" start="2018-06-01" duration="9" complete="0" thirdDate="2018-06-01" thirdDate-constraint="0" expand="true"/>
+        <task id="49" name="1 Fase de Testes" color="#8cb6ce" meeting="false" start="2018-06-15" duration="1" complete="0" thirdDate="2018-06-15" thirdDate-constraint="0" expand="true"/>
+        <task id="50" name="2 Fase de Testes" color="#8cb6ce" meeting="false" start="2018-06-22" duration="1" complete="0" thirdDate="2017-11-01" thirdDate-constraint="0" expand="true"/>
+        <task id="61" name="3 Fase de Testes" color="#8cb6ce" meeting="false" start="2018-06-29" duration="2" complete="0" thirdDate="2018-06-29" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
