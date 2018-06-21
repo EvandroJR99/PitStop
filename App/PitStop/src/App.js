@@ -17,7 +17,8 @@ class App extends Component {
             databaseURL: "https://app-pitstop.firebaseio.com",
             projectId: "app-pitstop",
             storageBucket: "app-pitstop.appspot.com",
-            messagingSenderId: "645919936697"
+            messagingSenderId: "645919936697",
+            persistence: true
         });
     }
 

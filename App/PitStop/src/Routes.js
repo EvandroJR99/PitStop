@@ -13,6 +13,7 @@ import FormIntervencoes from './components/FormIntervencoes';
 import FormPeca from './components/FormPeca';
 import InformacoesLocais from './components/InformacoesLocais';
 import Sobre from './components/Sobre';
+import Notificacao from './components/Notificacao';
 
 export default props => (
     <Router leftButtonIconStyle={{ tintColor: 'white' }}  navigationBarStyle={{ backgroundColor: '#F9A825', borderBottomColor: 'transparent', borderBottomWidth: 0, elevation: 5,shadowOpacity: 5}} 
@@ -29,5 +30,6 @@ export default props => (
         <Scene key='formPeca' component={FormPeca} title="Pecas" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='informacoesLocais' component={InformacoesLocais} title="Informações do Local" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='sobre' component={Sobre} title="Sobre" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='notificacao' component={Notificacao} tittle="Notificação" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
     </Router>
 );

@@ -82,9 +82,17 @@ export const autenticarUsuario = ({ email, senha }) => {
 
     return dispatch => {
         dispatch({ type: LOGIN_EM_ANDAMENTO });
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)//slinhsa inserida
+        .then(function() {//slinhsa inserida
         firebase.auth().signInWithEmailAndPassword(email, senha)
             .then(value => loginUsuarioSucesso(dispatch))
             .catch(erro => loginUsuarioErro(erro, dispatch));
+        })//slinhsa inserida
+        .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+        });
     }
 }
 
