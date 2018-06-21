@@ -1,1 +1,1 @@
-Nenhuma alteração realizada.
+Nenhuma alteração realizada, no entanto, senti falta da especificação de casos de teste. Entradas e saídas. OBservei na template e vi que faltaram. Tentem adaptar.
