@@ -30,8 +30,8 @@ class Automoveis extends Component {
     renderRow(veiculos){
      return(
         <TouchableHighlight  underlayColor="rgba(0, 0, 0, 0)"
-        onPress={() => Actions.editaAutomovel( {title: "Informações do Automóvel", apelido: veiculos.apelido, placa: veiculos.placa, 
-        ano: veiculos.ano, quilometragem: veiculos.quilometragem, dataRevisao: veiculos.dataRevisao, KmRecomendada:veiculos.KmRecomendada})}
+        onPress={() => Actions.informacoesAutomovel( {title: "Informações", apelido: veiculos.apelido, placa: veiculos.placa,
+         ano: veiculos.ano, quilometragem: veiculos.quilometragem, dataRevisao: veiculos.dataRevisao, kmRecomendada: veiculos.kmRecomendada})}
         >
             <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#CCC" }}>
                     <Text style={{ fontSize: 18 }}>{veiculos.apelido}</Text>

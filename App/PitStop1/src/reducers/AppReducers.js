@@ -7,7 +7,10 @@ import {
     MODIFICA_QUILOMETRAGEM,
     ADICIONA_VEICULO_ERRO,
     ADICIONA_VEICULO_SUCESSO,
-    CADASTRO_VEICULO_EM_ANDAMENTO
+    CADASTRO_VEICULO_EM_ANDAMENTO,
+    EXCLUI_VEICULO_ERRO,
+    EXCLUI_VEICULO_SUCESSO,
+    EXCLUI_VEICULO_EM_ANDAMENTO
     
 } from '../actions/types';
 
@@ -19,7 +22,9 @@ const INITIAL_STATE = {
     km_recomendada: '',
     apelido: '',
     cadastro_veiculo_erro: '',
-    cadastro_veiculo_em_andamento: false
+    cadastro_veiculo_em_andamento: false,
+    exclui_veiculo_erro: '',
+    exclui_veiculo_em_andamento: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -53,6 +58,23 @@ export default (state = INITIAL_STATE, action) => {
             }
         case CADASTRO_VEICULO_EM_ANDAMENTO:
             return { ...state, cadastro_veiculo_em_andamento: true }
+            //
+            case EXCLUI_VEICULO_ERRO:
+            return { ...state, exclui_veiculo_erro: action.payload, exclui_veiculo_em_andamento: false }
+        case EXCLUI_VEICULO_SUCESSO:
+            return {
+                ...state,
+                placa: '',
+                quilometragem: '',
+                ano: '',
+                data_revisao: '',
+                km_recomendada: '',
+                apelido: '',
+                exclui_veiculo_erro: '',
+                exclui_veiculo_em_andamento: false
+            }
+        case EXCLUI_VEICULO_EM_ANDAMENTO:
+            return { ...state, exclui_veiculo_em_andamento: true }
         default:
             return state;
     }

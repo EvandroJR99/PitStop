@@ -71,14 +71,14 @@ const Principal = props => (
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <TouchableOpacity  onPress={() => Actions.notificacao()}>
+                    <TouchableOpacity  onPress={() => Actions.notificacao({title: "Notificações"})}>
                         <View style={{
                             backgroundColor: '#F9A825', alignItems: 'center',
                             justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
                         }}
                         >
                             <Icon name="information-variant" size={58} color="#fff" />
-                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15 }}>SOBRE</Text>
+                            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15 }}>NOTIFICAÇÕES</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

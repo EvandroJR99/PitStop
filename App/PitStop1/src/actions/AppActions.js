@@ -15,7 +15,10 @@ import {
     ADICIONA_VEICULO_SUCESSO,
     CADASTRO_VEICULO_EM_ANDAMENTO,
     LISTA_VEICULO_USUARIO,
-    LISTA_VEICULO_USUARIO_DROP
+    LISTA_VEICULO_USUARIO_DROP,
+    EXCLUI_VEICULO_ERRO,
+    EXCLUI_VEICULO_SUCESSO,
+    EXCLUI_VEICULO_EM_ANDAMENTO
 } from './types';
 
 export const modificaAno = texto => {
@@ -91,12 +94,48 @@ export const cadastraVeiculo = ({ placa, quilometragem, ano, data_revisao, km_re
                     let emailUsuarioB64 = b64.encode(currentUser.email);
 
                     firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
-                        .push({ placa: placa, apelido: apelido })
+                        .push({ placa: placa, apelido: apelido, ano: ano, quilometragem: quilometragem, dataRevisao: data_revisao, kmRecomendada: km_recomendada })
                         .then(() => adicionaVeiculoSucesso(dispatch))
                         .catch(erro => adicionaVeiculoErro(erro.message, dispatch))
                 }
             })
     }
+}
+
+export const excluirAutomovel = ({ placa, quilometragem, ano, data_revisao, km_recomendada, apelido }) => {
+    return dispatch => {
+        dispatch({ type: EXCLUI_VEICULO_EM_ANDAMENTO });
+        const { currentUser } = firebase.auth();
+        let emailUsuarioB64 = b64.encode(currentUser.email);
+        firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
+        .once('value')
+        .then(snapshot => {
+            if (snapshot.val()) {
+                        const ref = firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`);
+                        //firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
+                        ref.once("value")
+                        .then((veiculosSnapshot) => {
+                            veiculosSnapshot.forEach((childSnapshot) => {
+                                console.log("childSnapshot", childSnapshot);
+                                if(childSnapshot.val().placa == placa ){
+                                    console.log("childSnapshot.key DENTRO DO IF", childSnapshot.key);
+                                    ref.child(childSnapshot.key).remove()
+                                           .then(() => excluiVeiculoSucesso(dispatch))
+                                           .catch(erro => excluiVeiculoErro(erro.message, dispatch))
+                                        }
+                            })
+                        });
+            } else {
+                dispatch (
+                    {
+                        type: EXCLUI_VEICULO_ERRO, 
+                        payload: 'ERRO AO EXLCUIR AUTOMÓVEL.'
+                    }
+                )
+            }
+        })
+    }
+
 }
 
 const adicionaVeiculoErro = (erro, dispatch) => (
@@ -124,6 +163,34 @@ const adicionaVeiculoSucesso = dispatch => {
         { cancelable: false }
     )
 }
+
+//exclusao
+const excluiVeiculoErro = (erro, dispatch) => (
+    dispatch (
+        {
+            type: EXCLUI_VEICULO_ERRO, 
+            payload: erro
+        }
+    )
+)
+
+const excluiVeiculoSucesso = dispatch => {
+    dispatch (
+        {
+            type: EXCLUI_VEICULO_SUCESSO
+        }
+    );
+
+    Alert.alert(
+        'Exlcuído!',
+        'Exclusão do veículo realizada com sucesso!',
+        [
+            { text: 'OK', onPress: () => Actions.principal() },
+        ],
+        { cancelable: false }
+    )
+}
+//fimExlcusao
 
 export const veiculosUsuarioFetch = () => {
     const { currentUser } = firebase.auth();
