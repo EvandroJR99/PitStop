@@ -16,7 +16,6 @@ import PushNotification from 'react-native-push-notification'
 import ActionButton from 'react-native-action-button';
 import moment from 'moment'
 import { Actions } from 'react-native-router-flux';
-
 PushNotification.configure({
     onRegister: function(token){
         console.log('Token:', token)

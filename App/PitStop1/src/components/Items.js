@@ -7,12 +7,28 @@ import {
     TouchableOpacity
 } from 'react-native'
 
+import { Alert } from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export default class Items extends Component {
+
+    alerta (key) {
+        Alert.alert(
+            'Atenção!',
+            'Tem certeza que deseja excluir essa notificação?',
+            [
+                { text: 'SIM', onPress: () => this.props.onRemoveItems(key) },
+                { text: 'NÃO', onPress: () => console.log('')},
+            ],
+            { cancelable: false }
+        )
+        
+    }
+
     render(){
         return (
-            <View style={{flex: 1, padding: 20}}>
+            <View style={{flex: 1}}>
                 <ListView 
                     style={styles.list}
                     enableEmptySections
@@ -21,17 +37,19 @@ export default class Items extends Component {
                         const deleteRow = (
                                 <Icon 
                                     name="delete-forever"
-                                    size={20}
+                                    size={25}
                                     color="black"
                                 />
                         )
                         return (
-                            <View style={styles.row}>
-                                <Text>{value.title}</Text>
-                                <Text>{value.date}</Text>
-                                <TouchableOpacity onPress={()=> this.props.onRemoveItems(key)}>
+                            <View style={{flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#CCC"}}>
+                                <Text style={{ fontSize: 18 }} >{value.title}</Text>
+                                <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                                <Text style={{ fontSize: 18 }}>{value.date}</Text>
+                                <TouchableOpacity onPress={()=> this.alerta(key) }>
                                     {deleteRow}
                                 </TouchableOpacity>
+                                </View>
                             </View>
                         )
                     }}
@@ -52,7 +70,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         paddingHorizontal: 5,
         borderRadius: 4,
-        borderBottomWidth: 1, 
+        borderBottomWidth: 2, 
         borderColor: "#CCC"
     },
     list: {

@@ -31,7 +31,7 @@ export default props => (
         <Scene key='formPeca' component={FormPeca} title="Pecas" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='informacoesLocais' component={InformacoesLocais} title="Informações do Local" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='sobre' component={Sobre} title="Sobre" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
-        <Scene key='notificacao' component={Notificacao} tittle="Notificação" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
-        <Scene key='editaAutomovel' component={EditaAutomovel} tittle="Editar Automóvel" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
+        <Scene key='notificacao' component={Notificacao} tile="Notificação" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
+        <Scene key='editaAutomovel' component={EditaAutomovel} title="Editar Automóvel" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
     </Router>
 );

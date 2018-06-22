@@ -23,22 +23,22 @@ export default class Input extends Component {
                         <TouchableHighlight onPress={this.props.onCloseModal}>
                             <Icon 
                                 name="times"
-                                size={20}
+                                size={25}
                                 color="black"
                             />
                         </TouchableHighlight>
                         <TextInput 
                             value={this.props.title}
-                            placeholder="Title"
+                            placeholder="Descrição"
                             style={styles.input}
                             onChangeText={(title) => this.props.onChangeTitle(title)}
                         />
-                        <DatePicker 
+                        <DatePicker style={{width: 300}}
                             date={this.props.date}
                             mode="datetime"
-                            placeholder="Date"
+                            placeholder="Data"
                             format="YYYY-MM-DD HH:mm"
-                            minDate="2017-01-01"
+                            minDate="2018-01-01"
                             maxDate="2050-01-01"
                             confirmBtnText="Confirm"
                             cancelBtnText="Cancel"
@@ -48,7 +48,7 @@ export default class Input extends Component {
                             style={styles.button}
                             onPress={this.props.onHandleItems}
                         >
-                            <Text style={styles.buttonText}>Send</Text>
+                            <Text style={styles.buttonText}>CONFIRMAR</Text>
                         </TouchableHighlight>
                     </View>
                 </Modal>
@@ -75,12 +75,13 @@ const styles = StyleSheet.create({
         borderRadius: 3
     },
     button:{
-        backgroundColor: 'skyblue',
+        backgroundColor: '#F9A825',
         paddingTop: 15,
         paddingBottom: 15,
         marginTop: 5
     },
     buttonText: {
-        textAlign: 'center'
+        textAlign: 'center',
+        color: '#fff'
     }
 })
