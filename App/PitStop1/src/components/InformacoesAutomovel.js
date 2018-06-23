@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Alert, ListView, TouchableHighlight, Button, TouchableOpacity } from 'react-native';
+import { View, Text, Alert, ListView, TouchableHighlight, Button, TouchableOpacity, TextInput } from 'react-native';
 import firebase from 'firebase';
 import Modal from "react-native-modal";
 import { Actions } from 'react-native-router-flux';
@@ -17,6 +17,7 @@ import {
 
     _recuperaInformacoes() {
         const { apelido, placa, ano, quilometragem, dataRevisao, kmRecomendada} = this.props
+        console.log("dentro do recupera informacoes", this.props.apelido)
     }
 
     state = {
@@ -43,6 +44,7 @@ import {
         this._toggleModalExcluir();
     }  
 
+
     render() {
         return (
              <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#CCC" }}>
@@ -63,7 +65,8 @@ import {
                                  <Button title="Excluir" color="#F9A825" onPress={this._toggleModalExcluir} />
                             </View>
                             <View style={{ justifyContent: 'center', marginRight: 20,  width: 120, height: 50 }}>                
-                                <Button title="Editar" color="#F9A825" onPress={() =>Actions.editarAutomovel()} />
+                                <Button title="Editar" color="#F9A825" onPress={() =>Actions.editarAutomovel( {apelido: this.props.apelido, ano: this.props.ano, placa: this.props.placa, 
+                                    quilometragem: this.props.quilometragem, dataRevisao: this.props.dataRevisao, kmRecomendada: this.props.kmRecomendada})}/>
                             </View>
                           </View>  
                             <Modal isVisible={this.state.isModalVisibleExcluir} backdropColor='white' avoidKeyboard='false' backdropOpacity='0' >
