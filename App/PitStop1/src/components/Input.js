@@ -4,6 +4,7 @@ import {
     View,
     StyleSheet,
     TextInput,
+    Button,
     TouchableHighlight
 } from 'react-native'
 
@@ -20,20 +21,15 @@ export default class Input extends Component {
                     animationOut={'slideOutRight'}
                 >
                     <View style={styles.modalContent}>
-                        <TouchableHighlight onPress={this.props.onCloseModal}>
-                            <Icon 
-                                name="times"
-                                size={25}
-                                color="black"
-                            />
-                        </TouchableHighlight>
+                        <Text style={{ fontSize: 16, textAlign: 'center', paddingBottom: 20 }}>Cadastro de Notificação</Text>
+                        
                         <TextInput 
                             value={this.props.title}
                             placeholder="Descrição"
-                            style={styles.input}
+                            style={{fontSize: 20, height: 45}}
                             onChangeText={(title) => this.props.onChangeTitle(title)}
                         />
-                        <DatePicker style={{width: 300}}
+                        <DatePicker style={{width: 300, paddingTop: 10}}
                             date={this.props.date}
                             mode="datetime"
                             placeholder="Data"
@@ -44,12 +40,10 @@ export default class Input extends Component {
                             cancelBtnText="Cancel"
                             onDateChange={(date) => this.props.onChangeDate(date)}
                         />
-                        <TouchableHighlight
-                            style={styles.button}
-                            onPress={this.props.onHandleItems}
-                        >
-                            <Text style={styles.buttonText}>CONFIRMAR</Text>
-                        </TouchableHighlight>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10}}>
+                                <Button title="Cancelar" color="#F9A825" onPress={this.props.onCloseModal} />
+                                <Button title="Cadastrar" color="#F9A825" onPress={this.props.onHandleItems} />
+                        </View>
                     </View>
                 </Modal>
             </View>
@@ -63,12 +57,14 @@ const styles = StyleSheet.create({
         marginTop: 50
     },
     modalContent: {
-        backgroundColor: "#fff",
+        backgroundColor: '#F5F5F5',
+        elevation: 4,
         padding: 25,
         borderRadius: 5
     },
     input: {
         marginBottom: 5,
+        paddingTop: 10,
         height: 40,
         borderColor: '#ccc',
         borderWidth: 1,
@@ -78,7 +74,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F9A825',
         paddingTop: 15,
         paddingBottom: 15,
-        marginTop: 5
+        marginTop: 10
     },
     buttonText: {
         textAlign: 'center',

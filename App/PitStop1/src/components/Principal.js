@@ -3,6 +3,7 @@ import { View, StatusBar, Text, Button, TouchableOpacity, Image, TouchableHighli
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Octicons';
+import Icon3 from 'react-native-vector-icons/MaterialIcons';
 import firebase from 'firebase';
 
 
@@ -77,7 +78,7 @@ const Principal = props => (
                             justifyContent: 'center', borderRadius: 2, width: 120, height: 120, elevation: 4, marginBottom: 6
                         }}
                         >
-                            <Icon name="information-variant" size={58} color="#fff" />
+                            <Icon3 name="notifications" size={58} color="#fff" />
                             <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 15 }}>NOTIFICAÇÕES</Text>
                         </View>
                     </TouchableOpacity>
