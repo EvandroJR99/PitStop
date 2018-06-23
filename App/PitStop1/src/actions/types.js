@@ -1,3 +1,5 @@
+
+//-------------------------------CADASTRO DE USUÁRIO--------------------------------
 export const MODIFICA_EMAIL = 'modifica_email';
 export const MODIFICA_SENHA = 'modifica_senha';
 export const MODIFICA_SENHA_CONF = 'modifica_senha_conf'
@@ -5,8 +7,16 @@ export const MODIFICA_NOME = 'modifica_nome';
 export const CADASTRO_USUARIO_SUCESSO = 'cadastro_usuario_sucesso';
 export const CADASTRO_USUARIO_ERRO = 'cadastro_usuario_erro';
 export const CADASTRO_USUARIO_ERRO_SENHA = 'cadastro_usuario_erro_senha';
+export const CADASTRO_USUARIO_ERRO_SENHA_TAMANHO = 'cadastro_usuario_erro_senha_tamanho';
+export const CADASTRO_USUARIO_ERRO_CAMPOS_VAZIOS = 'cadastro_usuario_erro_campos_vazios';
+export const CADASTRO_USUARIO_ERRO_EMAIL = 'cadastro_usuario_erro_email';
+export const CADASTRO_USUARIO_ERRO_NOME = 'cadastro_usuario_erro_nome';
+//----------------------------------------------------------------------------------
+
+
 export const LOGIN_USUARIO_SUCESSO = 'login_usuario_sucesso';
 export const LOGIN_USUARIO_ERRO = 'login_usuario_erro';
+export const LOGIN_USUARIO_ERRO_CAMPOS_VAZIOS = 'login_usuario_erro_campos_vazios';
 export const LOGIN_EM_ANDAMENTO = 'login_em_andamento';
 export const CADASTRO_EM_ANDAMENTO = 'cadastro_em_andamento'; /// fazer um diferente pra cada botao
 

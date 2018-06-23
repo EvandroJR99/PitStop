@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux'
 import { Alert } from 'react-native';
+import { soletras, validationEmail } from './validations';
 import b64 from 'base-64';
 import {
     MODIFICA_EMAIL,
@@ -10,8 +11,13 @@ import {
     CADASTRO_USUARIO_SUCESSO,
     CADASTRO_USUARIO_ERRO,
     CADASTRO_USUARIO_ERRO_SENHA,
+    CADASTRO_USUARIO_ERRO_SENHA_TAMANHO,
+    CADASTRO_USUARIO_ERRO_CAMPOS_VAZIOS,
+    CADASTRO_USUARIO_ERRO_EMAIL,
+    CADASTRO_USUARIO_ERRO_NOME,
     LOGIN_USUARIO_SUCESSO,
     LOGIN_USUARIO_ERRO,
+    LOGIN_USUARIO_ERRO_CAMPOS_VAZIOS,
     LOGIN_EM_ANDAMENTO,
     CADASTRO_EM_ANDAMENTO
 } from './types';
@@ -47,18 +53,38 @@ export const modificaNome = (texto) => {
 export const cadastraUsuario = ({ nome, email, senha, confSenha }) => {
     return dispatch => {
         dispatch({ type: CADASTRO_EM_ANDAMENTO });
-        if (senha == confSenha) {
-            firebase.auth().createUserWithEmailAndPassword(email, senha)
-                .then(user => {
-                    let emailB64 = b64.encode(email); //Criptografa o email
-                    firebase.database().ref('/usuarios/' + emailB64)
-                        .push({ nome })
-                        .then(value => cadastroUsuarioSucesso(dispatch))
-                })
-                .catch(erro => cadastroUsuarioErro(erro, dispatch));
-        } else {
-            dispatch({ type: CADASTRO_USUARIO_ERRO_SENHA });
+        if(nome == '' || email == '' || senha == '' || confSenha == ''){
+            dispatch({ type: CADASTRO_USUARIO_ERRO_CAMPOS_VAZIOS });
+        }else{
+            var validNome = soletras.exec(nome);
+            const validEmail = validationEmail.exec(email);
+            if( validNome ){
+                if(validEmail){
+                    if (senha == confSenha) {
+                        if(senha.length >= 8 && senha.length <= 15){
+                            firebase.auth().createUserWithEmailAndPassword(email, senha)
+                            .then(user => {
+                                let emailB64 = b64.encode(email); //Criptografa o email
+                                firebase.database().ref('/usuarios/' + emailB64)
+                                    .push({ nome })
+                                    .then(value => cadastroUsuarioSucesso(dispatch))
+                            })
+                            .catch(erro => cadastroUsuarioErro(erro, dispatch));
+                        }else{
+                            dispatch({ type: CADASTRO_USUARIO_ERRO_SENHA_TAMANHO });
+                        }
+                    } else {
+                        dispatch({ type: CADASTRO_USUARIO_ERRO_SENHA });
+                    }
+                }else{
+                    dispatch({ type: CADASTRO_USUARIO_ERRO_EMAIL});
+                }
+            }else{
+                dispatch({ type: CADASTRO_USUARIO_ERRO_NOME});
+            }
+            
         }
+       
     }
 }
 
@@ -82,7 +108,10 @@ export const autenticarUsuario = ({ email, senha }) => {
 
     return dispatch => {
         dispatch({ type: LOGIN_EM_ANDAMENTO });
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)//slinhsa inserida
+        if(email == '' || senha == ''){
+            dispatch({ type: LOGIN_USUARIO_ERRO_CAMPOS_VAZIOS});
+        }else{
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)//slinhsa inserida
         .then(function() {//slinhsa inserida
         firebase.auth().signInWithEmailAndPassword(email, senha)
             .then(value => loginUsuarioSucesso(dispatch))
@@ -93,6 +122,8 @@ export const autenticarUsuario = ({ email, senha }) => {
             var errorCode = error.code;
             var errorMessage = error.message;
         });
+        }
+        
     }
 }
 
@@ -110,7 +141,7 @@ const loginUsuarioErro = (erro, dispatch) => {
     dispatch(
         {
             type: LOGIN_USUARIO_ERRO,
-            payload: erro.message
+            payload: erro.code
         }
     );
 }
