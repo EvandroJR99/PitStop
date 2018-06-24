@@ -8,6 +8,9 @@ import {
     ADICIONA_VEICULO_ERRO,
     ADICIONA_VEICULO_SUCESSO,
     CADASTRO_VEICULO_EM_ANDAMENTO,
+    CADASTRO_VEICULO_ERRO_CAMPOS_VAZIOS,
+    CADASTRO_VEICULO_ERRO_APELIDO,
+    CADASTRO_VEICULO_ERRO_PLACA,
     EXCLUI_VEICULO_ERRO,
     EXCLUI_VEICULO_SUCESSO,
     EXCLUI_VEICULO_EM_ANDAMENTO
@@ -44,6 +47,12 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, quilometragem: action.payload }
         case ADICIONA_VEICULO_ERRO:
             return { ...state, cadastro_veiculo_erro: action.payload, cadastro_veiculo_em_andamento: false }
+        case CADASTRO_VEICULO_ERRO_CAMPOS_VAZIOS:
+            return { ...state, cadastro_veiculo_erro: 'Todos os campos são obrigatórios.', cadastro_veiculo_em_andamento: false }
+        case CADASTRO_VEICULO_ERRO_APELIDO:
+            return { ...state, cadastro_veiculo_erro: 'O apelido digitado é inválido, favor usar somente letras.', cadastro_veiculo_em_andamento: false }
+        case CADASTRO_VEICULO_ERRO_PLACA:
+            return { ...state, cadastro_veiculo_erro: 'A placa digitada é inválida.', cadastro_veiculo_em_andamento: false }
         case ADICIONA_VEICULO_SUCESSO:
             return {
                 ...state,
@@ -59,7 +68,7 @@ export default (state = INITIAL_STATE, action) => {
         case CADASTRO_VEICULO_EM_ANDAMENTO:
             return { ...state, cadastro_veiculo_em_andamento: true }
             //
-            case EXCLUI_VEICULO_ERRO:
+        case EXCLUI_VEICULO_ERRO:
             return { ...state, exclui_veiculo_erro: action.payload, exclui_veiculo_em_andamento: false }
         case EXCLUI_VEICULO_SUCESSO:
             return {

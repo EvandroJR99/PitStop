@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { Alert } from 'react-native';
 import b64 from 'base-64';
+import { soletras, validationEmail } from './validations';
 import _ from 'lodash';
 
 import {
@@ -14,6 +15,9 @@ import {
     ADICIONA_VEICULO_ERRO,
     ADICIONA_VEICULO_SUCESSO,
     CADASTRO_VEICULO_EM_ANDAMENTO,
+    CADASTRO_VEICULO_ERRO_CAMPOS_VAZIOS,
+    CADASTRO_VEICULO_ERRO_APELIDO,
+    CADASTRO_VEICULO_ERRO_PLACA,
     LISTA_VEICULO_USUARIO,
     LISTA_VEICULO_USUARIO_DROP,
     EXCLUI_VEICULO_ERRO,
@@ -66,39 +70,51 @@ export const modificaQuilometragem = texto => {
 export const cadastraVeiculo = ({ placa, quilometragem, ano, data_revisao, km_recomendada, apelido }) => {
     return dispatch => {
         dispatch({ type: CADASTRO_VEICULO_EM_ANDAMENTO  });
-        let placaB64 = b64.encode(placa);
-
-        firebase.database().ref(`/veiculos/${placaB64}`)
-            .once('value')
-            .then(snapshot => {
-
-                if (snapshot.val()) {
-                    dispatch (
-                        {
-                            type: ADICIONA_VEICULO_ERRO, 
-                            payload: 'Já existe um veículo cadastro com a placa digitada.'
+        if(placa == '' || quilometragem == '' || ano == '' || data_revisao == '' || km_recomendada == '' || apelido == ''){
+            dispatch({ type: CADASTRO_VEICULO_ERRO_CAMPOS_VAZIOS });
+        }else{
+            const validApelido = soletras.exec(apelido);
+            if(validApelido){
+                if(placa.length >= 7 && placa.length <=8){
+                    let placaB64 = b64.encode(placa);
+                firebase.database().ref(`/veiculos/${placaB64}`)
+                    .once('value')
+                    .then(snapshot => {
+                        if (snapshot.val()) {
+                            dispatch (
+                                {
+                                    type: ADICIONA_VEICULO_ERRO, 
+                                    payload: 'Já existe um veículo cadastro com a placa digitada.'
+                                }
+                            )
+        
+                        } else {
+                            //veiculo q queremos adicionar
+                            firebase.database().ref(`/veiculos/${placaB64}`)
+                                .push({ quilometragem: quilometragem, ano: ano, dataRevisao: data_revisao, kmRecomendada: km_recomendada, apelido: apelido })
+                                .then(() => adicionaVeiculoSucesso(dispatch))
+                                .catch(erro => adicionaVeiculoErro(erro.message, dispatch))
+        
+                            
+        
+                            //relacionamento usuario com veiculo
+                            const { currentUser } = firebase.auth();
+                            let emailUsuarioB64 = b64.encode(currentUser.email);
+        
+                            firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
+                                .push({ placa: placa, apelido: apelido, ano: ano, quilometragem: quilometragem, dataRevisao: data_revisao, kmRecomendada: km_recomendada })
+                                .then(() => adicionaVeiculoSucesso(dispatch))
+                                .catch(erro => adicionaVeiculoErro(erro.message, dispatch))
                         }
-                    )
-
-                } else {
-                    //veiculo q queremos adicionar
-                    firebase.database().ref(`/veiculos/${placaB64}`)
-                        .push({ quilometragem: quilometragem, ano: ano, dataRevisao: data_revisao, kmRecomendada: km_recomendada, apelido: apelido })
-                        .then(() => adicionaVeiculoSucesso(dispatch))
-                        .catch(erro => adicionaVeiculoErro(erro.message, dispatch))
-
-                    
-
-                    //relacionamento usuario com veiculo
-                    const { currentUser } = firebase.auth();
-                    let emailUsuarioB64 = b64.encode(currentUser.email);
-
-                    firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
-                        .push({ placa: placa, apelido: apelido, ano: ano, quilometragem: quilometragem, dataRevisao: data_revisao, kmRecomendada: km_recomendada })
-                        .then(() => adicionaVeiculoSucesso(dispatch))
-                        .catch(erro => adicionaVeiculoErro(erro.message, dispatch))
+                    })
+                }else{
+                    dispatch({ type: CADASTRO_VEICULO_ERRO_PLACA });
                 }
-            })
+                
+            }else{
+                dispatch({ type: CADASTRO_VEICULO_ERRO_APELIDO });
+            }
+        }
     }
 }
 

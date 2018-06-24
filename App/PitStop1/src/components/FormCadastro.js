@@ -30,7 +30,7 @@ class formCadastro extends Component {
             )
         }
         return (
-            <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraUsuario()} />
+            <Button title="CONFIRMAR" color="#F9A825" onPress={() => this._cadastraUsuario()} />
         )
     }
 
@@ -48,30 +48,33 @@ class formCadastro extends Component {
 					scrollEnabled={false}
 				>
 					<View style={{ flex: 1, justifyContent: 'center' }}>
-
+					<Text style={{ paddingTop: 10, fontSize: 18 }}>Nome:</Text>
 						<TextInput
 							value={this.props.nome}
 							style={{ fontSize: 20, height: 45 }}
-							placeholder='Nome'
+							placeholder=''
 							onChangeText={texto => this.props.modificaNome(texto)}
 						/>
+						<Text style={{ paddingTop: 20, fontSize: 18 }}>Email:</Text>
 						<TextInput
 							value={this.props.email}
-							style={{ fontSize: 20, height: 45 }}
-							placeholder='E-mail'
+							style={{ fontSize: 10, height: 45 }}
+							placeholder=''
 							onChangeText={texto => this.props.modificaEmail(texto)}
 						/>
+						<Text style={{ paddingTop: 10, fontSize: 18 }}>Senha:</Text>
 						<TextInput
 							value={this.props.senha}
 							secureTextEntry
 							style={{ fontSize: 20, height: 45 }}
-							placeholder='Senha'
+							placeholder=''
 							onChangeText={texto => this.props.modificaSenha(texto)}
 						/>
+						<Text style={{ paddingTop: 10, fontSize: 18 }}>Confirmação de Senha:</Text>
 						<TextInput secureTextEntry 
 							value={this.props.confSenha}
 							style={{ fontSize: 20, height: 45 }} 
-							placeholder='Confirmação Senha' 
+							placeholder='' 
 							onChangeText={texto => this.props.modificaConfSenha(texto)}
 						/>
 						<Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10}}>{this.props.erroCadastro}</Text>

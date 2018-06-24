@@ -45,23 +45,28 @@ import {
 					scrollEnabled={false}
 				>
 					<View style={{ flex: 1, justifyContent: 'center' }}>
-
+					<Text style={{fontSize: 18 }}>Nome do Local:</Text>
 						<TextInput
 							value={this.props.nomeLocal}
 							style={{ fontSize: 20, height: 45 }}
-							placeholder='Nome do Local'
+							placeholder=''
+							maxLength = {45}
 							onChangeText={texto => this.props.modificaNomeLocal(texto)}
 						/>
+						<Text style={{fontSize: 18 }}>Responsável:</Text>
 						<TextInput
 							value={this.props.responsavel}
 							style={{ fontSize: 20, height: 45 }}
-							placeholder='Responsavel '
+							placeholder=''
+							maxLength = {50}
 							onChangeText={texto => this.props.modificaResponsavel(texto)}
 						/>
+						<Text style={{fontSize: 18 }}>Endereço:</Text>
 						<TextInput
 							value={this.props.endereco}
 							style={{ fontSize: 20, height: 45 }}
-							placeholder='Endereço'
+							placeholder=''
+							maxLength = {100}
 							onChangeText={texto => this.props.modificaEndereco(texto)}
 						/>
 						

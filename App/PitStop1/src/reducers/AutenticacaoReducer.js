@@ -67,7 +67,7 @@ export default (state = INITIAL_STATE, action) => {
         case CADASTRO_USUARIO_ERRO_EMAIL:
             return { ...state, erroCadastro: 'O email digitado é inválido.', loading_cadastro: false }
         case CADASTRO_USUARIO_ERRO_NOME:
-            return { ...state, erroCadastro: 'O nome digitado é inválido.', loading_cadastro: false }
+            return { ...state, erroCadastro: 'O nome digitado é inválido, favor usar somente letras.', loading_cadastro: false }
         case CADASTRO_USUARIO_SUCESSO:
             return { ...state, nome: '', senha: '', confSenha: '', erroCadastro: '', loading_cadastro: false }
         case LOGIN_USUARIO_ERRO:

@@ -24,7 +24,7 @@ class formLogin extends Component {
             )
         }
         return (
-            <Button title="Login" color='#F9A825' onPress={() => this._autenticarUsuario()} />
+            <Button title="ENTRAR" color='#F9A825' onPress={() => this._autenticarUsuario()} />
         )
     }
 
@@ -48,17 +48,19 @@ class formLogin extends Component {
                         <Image style={{ width: 200, height: 200 }} source={logo} />
                     </View>
                     <View style={{ flex: 3, justifyContent: 'center' }}>
+                        <Text style={{fontSize: 18 }}>Email:</Text>
                         <TextInput
                             value={this.props.email}
                             style={{ fontSize: 20, height: 45 }}
-                            placeholder='E-mail'
+                            placeholder=''
                             onChangeText={texto => this.props.modificaEmail(texto)}
                         />
+                        <Text style={{ paddingTop: 5, fontSize: 18 }}>Senha:</Text>
                         <TextInput
                             secureTextEntry
                             value={this.props.senha}
                             style={{ fontSize: 20, height: 45 }}
-                            placeholder='Senha'
+                            placeholder=''
                             onChangeText={texto => this.props.modificaSenha(texto)}
                         />
                         <Text style={{ color: '#ff0000', fontSize: 14 }}>

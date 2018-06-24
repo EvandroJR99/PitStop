@@ -1,9 +1,13 @@
 
-//-------------------------------CADASTRO DE USUÁRIO--------------------------------
+//------------------Compartilho entre login e cadastro de usuário-------------------
 export const MODIFICA_EMAIL = 'modifica_email';
 export const MODIFICA_SENHA = 'modifica_senha';
 export const MODIFICA_SENHA_CONF = 'modifica_senha_conf'
 export const MODIFICA_NOME = 'modifica_nome';
+//----------------------------------------------------------------------------------
+
+//-------------------------------CADASTRO DE USUÁRIO--------------------------------
+export const CADASTRO_EM_ANDAMENTO = 'cadastro_em_andamento'; /// 
 export const CADASTRO_USUARIO_SUCESSO = 'cadastro_usuario_sucesso';
 export const CADASTRO_USUARIO_ERRO = 'cadastro_usuario_erro';
 export const CADASTRO_USUARIO_ERRO_SENHA = 'cadastro_usuario_erro_senha';
@@ -13,33 +17,45 @@ export const CADASTRO_USUARIO_ERRO_EMAIL = 'cadastro_usuario_erro_email';
 export const CADASTRO_USUARIO_ERRO_NOME = 'cadastro_usuario_erro_nome';
 //----------------------------------------------------------------------------------
 
-
+//----------------------------------LOGIN USUARIO-----------------------------------
 export const LOGIN_USUARIO_SUCESSO = 'login_usuario_sucesso';
 export const LOGIN_USUARIO_ERRO = 'login_usuario_erro';
 export const LOGIN_USUARIO_ERRO_CAMPOS_VAZIOS = 'login_usuario_erro_campos_vazios';
 export const LOGIN_EM_ANDAMENTO = 'login_em_andamento';
-export const CADASTRO_EM_ANDAMENTO = 'cadastro_em_andamento'; /// fazer um diferente pra cada botao
+//----------------------------------------------------------------------------------
 
-export const CADASTRO_EM_ANDAMENTO_LOCAL = 'cadastro_em_andamento_local';
-
+//--------------------------------------VEÍCULO-------------------------------------
 export const MODIFICA_PLACA =  'modifica_placa';
 export const MODIFICA_QUILOMETRAGEM = 'modifica_quilometragem';
 export const MODIFICA_ANO = 'modifica_ano';
 export const MODIFICA_DATA_REVISAO = 'modifica_data_revisao';
 export const MODIFICA_KM_RECOMENDADA = 'modifica_km_recomendada';
 export const MODIFICA_APELIDO = 'modifica_apelido';
+
 export const ADICIONA_VEICULO_SUCESSO = 'cadastro_veiculo_inclusao';
 export const ADICIONA_VEICULO_ERRO = 'cadastro_veiculo_erro';
 export const CADASTRO_VEICULO_EM_ANDAMENTO = 'cadastro_veiculo_em_andamento';
+export const CADASTRO_VEICULO_ERRO_CAMPOS_VAZIOS = 'cadastro_veiculo_erro_campos_vazios';
+export const CADASTRO_VEICULO_ERRO_APELIDO = 'cadastro_veiculo_erro_apelido';
+export const CADASTRO_VEICULO_ERRO_PLACA = 'cadastro_veiculo_erro_placa';
+
 export const EXCLUI_VEICULO_SUCESSO = 'exclui_veiculo_inclusao';//<<<<<
 export const EXCLUI_VEICULO_ERRO = 'exclui_veiculo_erro';//<<<<<
 export const EXCLUI_VEICULO_EM_ANDAMENTO = 'exclui_veiculo_em_andamento';//<<<
+
 export const LISTA_VEICULO_USUARIO = 'lista_veiculo_usuario';
+//----------------------------------------------------------------------------------
+
+
+export const CADASTRO_EM_ANDAMENTO_LOCAL = 'cadastro_em_andamento_local';
 export const MODIFICA_NOME_LOCAL = 'modifica_nome_local';
 export const MODIFICA_RESPONSAVEL = 'modifica_responsavel';
 export const MODIFICA_ENDERECO = 'modifica_endereco';
 export const ADICIONA_LOCAL_SUCESSO = 'adiciona_local_sucesso';
 export const ADICIONA_LOCAL_ERRO = 'adiciona_local_erro';
+export const CADASTRO_LOCAL_ERRO_RESPONSAVEL = 'cadastro_local_erro_responsavel';
+export const CADASTRO_LOCAL_ERRO_NOME_LOCAL = 'cadastro_local_erro_nome_local';
+export const CADASTRO_LOCAL_ERRO_CAMPOS_VAZIOS = 'cadastro_local_erro_campos_vazios';
 
 export const MODIFICA_PECA = 'modifica_peca';
 export const MODIFICA_DESCRICAO_PECA = 'modifica_descricao_peca';
