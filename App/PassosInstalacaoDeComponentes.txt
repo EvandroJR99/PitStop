@@ -1,4 +1,10 @@
-﻿react-native init --version="0.44.0" PitStop1
+﻿Para criar o projeto:
+react-native init --version="0.44.0" PitStop1
+
+Demais comandos  que devem ser efetuados em dentro da pasta PitStop1:
+OBS: Cuidado com os resultados dos comandos, se der WARN ta tudo bem, são só avisos.
+Mas se retornar ERR, são erros, logo a instalação do comando foi mal sucedida.
+
 npm install --save react-native-router-flux@3.38.0
 npm install react-native-datepicker --save
 npm install --save prop-types
@@ -19,10 +25,7 @@ npm install --save react-native-tab-view
 npm i react-native-action-button --save
 npm install react-native-vector-icons --save
 react-native link react-native-vector-icons
-
-Se o ícone não aparecer, é necessário fazer os passos a seguir:
 react-native link
-react-native run-android
 
 ----------------------------------------
 npm install --save lodash
@@ -32,5 +35,11 @@ npm install --save react-native-modal
 
 npm install --save react-native-material-dropdown
 
-Para instalar o push notification:
+Para instalar o push notification siga as instruções do link abaixo:
 https://github.com/zo0r/react-native-push-notification
+
+-------------------------------------------
+
+npm install --save react-native-text-input-mask
+react-native link react-native-text-input-mask
+
