@@ -27,7 +27,7 @@ import {
             )
         }
         return (
-            <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraLocal()} />
+            <Button title="CONFIRMAR" color="#F9A825" onPress={() => this._cadastraLocal()} />
         )
     }
 
