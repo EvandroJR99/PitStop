@@ -12,6 +12,8 @@ import Icon2 from 'react-native-vector-icons/Octicons';
 import { Actions } from 'react-native-router-flux';
 import Modal from "react-native-modal";
 import StarRating from 'react-native-star-rating';
+import TextInputMask from 'react-native-text-input-mask';
+
 
 import {
     modificaVeiculoIntervencao,
@@ -138,37 +140,39 @@ class formIntervencoes extends Component {
 
 
                     <View style={{ flex: 3, justifyContent: 'center' }}>
-
+                        <Text style={{ fontSize: 18 }}>Selecione o Automóvel:<Text style={{color: 'red'}}>*</Text></Text>
                         <View>
-
                             <Dropdown
-                                dropdownPosition='0' label='Selecione o Automóvel'
+                                dropdownPosition='0' 
                                 data={this.props.dados}
                                 valueExtractor={({ apelido }) => apelido}
                                 value={this.props.veiculo_intervencao}
                                 onChangeText={texto => { this.props.modificaVeiculoIntervencao(texto) }}
                             />
-
                         </View>
+                        <Text style={{ paddingTop: 10, fontSize: 18 }}>Descrição:<Text style={{color: 'red'}}>*</Text></Text>
                         <TextInput
                             value={this.props.descricao_intervencao}
                             style={{ fontSize: 20, height: 45 }}
-                            placeholder='Descrição'
+                            placeholder=''
                             onChangeText={texto => { this.props.modificaDescricaoIntervencao(texto) }}
                         />
-                        <TextInput
-                            value={this.props.valor_intervencao}
-                            style={{ fontSize: 20, height: 45 }}
-                            placeholder='Valor'
-                            onChangeText={texto => { this.props.modificaValor(texto) }}
-                        />
-
+                        <Text style={{ paddingTop: 10, fontSize: 18 }}>Valor:<Text style={{color: 'red'}}>*</Text></Text>
+                        <TextInputMask
+							refInput={ref => { this.input = ref }}
+							style={{ fontSize: 20, height: 45 }}
+							onChangeText={(formatted, extracted) => {
+								this.props.modificaValor(formatted)
+								console.log(formatted) // +1 (123) 456-78-90
+								console.log(extracted) // 1234567890
+							}}
+							mask={"R$[999990].[99]"}
+						/>
+                        <Text style={{ paddingTop: 10, fontSize: 18 }}>Selecione a peça:</Text>
                         <View /*VIEW DA PECA*/ style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
                             <View style={{ flex: 1, justifyContent: 'center' }} >
-
                                 <Dropdown
                                     dropdownPosition='0'
-                                    label='Selecione a Peça'
                                     data={this.props.dadosPeca}
                                     valueExtractor={({ nomePeca }) => nomePeca}
                                     value={this.props.peca_intervencao}
@@ -197,6 +201,7 @@ class formIntervencoes extends Component {
                                                     placeholder='Descrição peça'
                                                     onChangeText={texto => this.props.modificaDescricaoPeca(texto)}
                                                 />
+                                                <Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10}}>{this.props.adiciona_peca_erro}</Text>
                                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                                     <Button title="Cancelar" color="#F9A825" onPress={() => this._toggleModalPeca()} />
                                                     <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraPeca()} />
@@ -209,12 +214,11 @@ class formIntervencoes extends Component {
 
                             </View>
                         </View>
-
-                        <View /*VIEW DA LOCAIS*/ style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+                        <Text style={{ paddingTop: 10, fontSize: 18 }}>Selecione o Local:</Text>
+                        <View /*VIEW DE LOCAIS*/ style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
                             <View style={{ flex: 1, justifyContent: 'center' }} >
                                 <Dropdown
                                     dropdownPosition='0'
-                                    label='Selecione o Local'
                                     data={this.props.dadosLocais}
                                     valueExtractor={({ nomeLocal }) => nomeLocal}
                                     value={this.props.local_intervencao}
@@ -247,6 +251,7 @@ class formIntervencoes extends Component {
                                                     placeholder='Endereço'
                                                     onChangeText={texto => this.props.modificaEndereco(texto)}
                                                 />
+                                                 <Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10}}>{this.props.adiciona_local_erro}</Text>
                                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                                     <Button title="Cancelar" color="#F9A825" onPress={() => this._toggleModalLocal()} />
                                                     <Button title="Cadastrar" color="#F9A825" onPress={() => this._cadastraLocalInt()} />
@@ -258,6 +263,7 @@ class formIntervencoes extends Component {
                             </View>
                         </View>
 
+                        <Text style={{ paddingTop:10, fontSize: 18, height: 45 }}>Data da intervenção:<Text style={{color: 'red'}}>*</Text></Text>
                         <CalendarioInt />
 
 
@@ -278,7 +284,7 @@ class formIntervencoes extends Component {
 
 
 
-                        <Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10 }}>{ /*this.props.erroCadastro*/}</Text>
+                        <Text style={{ color: '#ff0000', fontSize: 14, paddingTop: 10 }}>{ this.props.adiciona_intervencao_erro}</Text>
                     </View>
                        {this.renderBtnCadastro()}
                    

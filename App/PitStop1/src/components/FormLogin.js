@@ -55,7 +55,7 @@ class formLogin extends Component {
                             placeholder=''
                             onChangeText={texto => this.props.modificaEmail(texto)}
                         />
-                        <Text style={{ paddingTop: 5, fontSize: 18 }}>Senha:</Text>
+                        <Text style={{ paddingTop: 10, fontSize: 18 }}>Senha:</Text>
                         <TextInput
                             secureTextEntry
                             value={this.props.senha}

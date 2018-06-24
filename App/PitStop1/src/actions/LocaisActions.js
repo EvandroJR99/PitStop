@@ -42,26 +42,40 @@ export const modificaEndereco = (texto) => {
 export const cadastraLocalInt = ({ nomeLocal, responsavel, endereco }) => {
     return dispatch => {
         dispatch({ type: CADASTRO_EM_ANDAMENTO_LOCAL });
-        let enderecoB64 = b64.encode(endereco);
-
-        firebase.database().ref(`/locais/${enderecoB64}`)
-            .once('value')
-            .then(snapshot => {
-
-                if (snapshot.val()) {
-                    dispatch(
-                        {
-                            type: ADICIONA_LOCAL_ERRO
-                        }
-                    )
-                } else {
-                    //adiciona o local
+        if (nomeLocal == '' || responsavel == '' || endereco == '') {
+            dispatch({ type: CADASTRO_LOCAL_ERRO_CAMPOS_VAZIOS });
+        } else {
+            const validNomeLocal = soletras.exec(nomeLocal);
+            if (validNomeLocal) {
+                const validResponsavel = soletras.exec(responsavel);
+                if (validResponsavel) {
+                    let enderecoB64 = b64.encode(endereco);
                     firebase.database().ref(`/locais/${enderecoB64}`)
-                        .set({ nomeLocal: nomeLocal, responsavel: responsavel, endereco: endereco })
-                        .then(() => adicionaLocalSucessoInt(dispatch))
-                        .catch(erro => adicionaLocalErro(erro.message, dispatch))
+                        .once('value')
+                        .then(snapshot => {
+
+                            if (snapshot.val()) {
+                                dispatch(
+                                    {
+                                        type: ADICIONA_LOCAL_ERRO
+                                    }
+                                )
+                            } else {
+                                //adiciona o local
+                                firebase.database().ref(`/locais/${enderecoB64}`)
+                                    .set({ nomeLocal: nomeLocal, responsavel: responsavel, endereco: endereco })
+                                    .then(() => adicionaLocalSucessoInt(dispatch))
+                                    .catch(erro => adicionaLocalErro(erro.message, dispatch))
+                            }
+                        })
+                } else {
+                    dispatch({ type: CADASTRO_LOCAL_ERRO_RESPONSAVEL });
                 }
-            })
+            } else {
+                dispatch({ type: CADASTRO_LOCAL_ERRO_NOME_LOCAL });
+            }
+        }
+
 
 
     }

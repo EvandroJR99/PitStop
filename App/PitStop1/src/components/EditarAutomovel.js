@@ -21,9 +21,9 @@ import {	/*
     
   
       _atualizaAutomovel() {
-        const { apelido, placa,  ano, quilometragem, dataRevisao, kmRecomendada } = this.props;
+        const { apelido2, placa,  ano, quilometragem, dataRevisao, kmRecomendada } = this.props;
 
-        this.props.atualizaAutomovel({ apelido, placa, ano, quilometragem, dataRevisao, kmRecomendada });
+        this.props.atualizaAutomovel({ apelido2, placa, ano, quilometragem, dataRevisao, kmRecomendada });
 
         console.log("dentro do atualiza ", this.props.apelido);
     } 
@@ -62,7 +62,8 @@ import {	/*
                     <TextInput
                             style={{ fontSize: 18, height: 45 }}     
                             editable = {true}
-                            defaultValue={this.props.apelido}
+                            placeholder={this.props.apelido}
+                            value={this.props.apelido2}
                             onChangeText={texto => this.props.modificaApelido2(texto)}                            
                             
 						/>
@@ -126,7 +127,7 @@ mapStateToProps = state => {
 			ano: state.AppReducers.ano,
 			data_revisao: state.AppReducers.data_revisao,
 			km_recomendada: state.AppReducers.km_recomendada,*/ 
-		//    apelido: state.AppReducers.apelido, //se descomentar essa ele nao vai carregar o apelido
+          apelido2: state.AppReducers.apelido2, //se descomentar essa ele nao vai carregar o apelido
            atualiza_veiculo_sucesso: state.AppReducers.atualiza_veiculo_sucesso,
             atualiza_veiculo_erro: state.AppReducers.atualiza_veiculo_erro,
             atualiza_veiculo_em_andamento: state.AppReducers.atualiza_veiculo_em_andamento

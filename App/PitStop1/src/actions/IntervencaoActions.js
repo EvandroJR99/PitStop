@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { Alert } from 'react-native';
 import b64 from 'base-64';
+import { soletras, validationEmail } from './validations';
 import _ from 'lodash';
 
 import {
@@ -15,6 +16,9 @@ import {
     ADICIONA_INTERVENCAO_ERRO,
     ADICIONA_INTERVENCAO_SUCESSO,
     CADASTRO_INTERVENCAO_EM_ANDAMENTO,
+    CADASTRO_INTERVENCAO_ERRO_CAMPOS_VAZIOS,
+    CADASTRO_INTERVENCAO_ERRO_DESCRICAO,
+    CADASTRO_INTERVENCAO_ERRO_AVALIACAO,
     LISTA_INTERVENCAO_USUARIO
 } from './types';
 
@@ -74,8 +78,14 @@ export const modificaStarIntervencao = texto => {
 export const cadastraIntervencao = ({ descricao_intervencao, valor_intervencao, data_intervencao, veiculo_intervencao, peca_intervencao, local_intervencao, star_intervencao  }) => {
     return dispatch => {
         dispatch({ type: CADASTRO_INTERVENCAO_EM_ANDAMENTO  });
-
-
+        if(descricao_intervencao == '' || valor_intervencao == '' || data_intervencao == '' || veiculo_intervencao == '' ){
+            dispatch({ type: CADASTRO_INTERVENCAO_ERRO_CAMPOS_VAZIOS  });
+        }else{
+            if(local_intervencao == '' && star_intervencao != ''){
+                dispatch({ type: CADASTRO_INTERVENCAO_ERRO_AVALIACAO });
+            }else{
+                const validDescricao = soletras.exec(descricao_intervencao);
+                if(validDescricao){
                     //intervencaos adicionada
                     firebase.database().ref(`/intervencoes/`)
                         .push({ dataInter: data_intervencao, valorInter: valor_intervencao, descricaoInter: descricao_intervencao, veiculoInter: veiculo_intervencao, pecaInter: peca_intervencao, localInter: local_intervencao, starInter: star_intervencao })
@@ -92,6 +102,11 @@ export const cadastraIntervencao = ({ descricao_intervencao, valor_intervencao, 
                         .push({ dataInter: data_intervencao, valorInter: valor_intervencao, descricaoInter: descricao_intervencao, veiculoInter: veiculo_intervencao, pecaInter: peca_intervencao, localInter: local_intervencao, starInter: star_intervencao })
                         .then(() => adicionaIntervencaoSucesso(dispatch))
                         .catch(erro => adicionaIntervencaoErro(erro.message, dispatch))
+                }else{
+                    dispatch({ type: CADASTRO_INTERVENCAO_ERRO_DESCRICAO });
+                }
+            }
+        }
                 
     }
 }

@@ -9,8 +9,11 @@ import {
     ADICIONA_PECA_SUCESSO,
     ADICIONA_PECA_ERRO,
     CADASTRO_EM_ANDAMENTO,
+    CADASTRO_PECA_ERRO_NOME_PECA,
+    CADASTRO_PECA_ERRO_CAMPOS_VAZIOS,
     LISTA_PECA_DROP
 } from './types';
+import { soletras } from './validations';
 
 export const modificaPeca = (texto) => {
     return {
@@ -30,28 +33,36 @@ export const modificaDescricaoPeca = (texto) => {
 export const cadastraPeca = ({ peca, descricaoPeca }) => {
     return dispatch => {
         dispatch({ type: CADASTRO_EM_ANDAMENTO });
-        let pecaB64 = b64.encode(peca);
+        if (peca == '' || descricaoPeca == '') {
+            dispatch({ type: CADASTRO_PECA_ERRO_CAMPOS_VAZIOS });
+        } else {
+            const validPeca = soletras.exec(peca);
+            if (validPeca) {
+                let pecaB64 = b64.encode(peca);
 
-        firebase.database().ref(`/pecas/${pecaB64}`)
-            .once('value')
-            .then(snapshot => {
+                firebase.database().ref(`/pecas/${pecaB64}`)
+                    .once('value')
+                    .then(snapshot => {
 
-                if (snapshot.val()) {
-                    dispatch(
-                        {
-                            type: ADICIONA_PECA_ERRO,
-                            payload: 'Esta peca ja esta cadastrada.'
+                        if (snapshot.val()) {
+                            dispatch(
+                                {
+                                    type: ADICIONA_PECA_ERRO,
+                                    payload: 'Esta peça já está cadastrada.'
+                                }
+                            )
+                        } else {
+                            //adiciona o peca
+                            firebase.database().ref(`/pecas/${pecaB64}`)
+                                .set({ nomePeca: peca, descricaoPeca: descricaoPeca })
+                                .then(() => adicionaPecaSucesso(dispatch))
+                                .catch(erro => adicionaPecaErro(erro.message, dispatch))
                         }
-                    )
-                } else {
-                    //adiciona o peca
-                    firebase.database().ref(`/pecas/${pecaB64}`)
-                        .set({ nomePeca: peca, descricaoPeca: descricaoPeca })
-                        .then(() => adicionaPecaSucesso(dispatch))
-                        .catch(erro => adicionaPecaErro(erro.message, dispatch))
-                }
-            })
-
+                    })
+            } else {
+                dispatch({ type: CADASTRO_PECA_ERRO_NOME_PECA });
+            }
+        }
 
     }
 }

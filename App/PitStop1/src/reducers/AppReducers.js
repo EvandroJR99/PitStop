@@ -28,6 +28,7 @@ const INITIAL_STATE = {
     data_revisao: '',
     km_recomendada: '',
     apelido: '',
+    
     cadastro_veiculo_erro: '',
     cadastro_veiculo_em_andamento: false,
     exclui_veiculo_erro: '',
@@ -37,6 +38,10 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     console.log(action);
     switch (action.type) {
+        case MODIFICA_APELIDO2:
+            return { ...state, apelido2:action.payload }
+
+
         case MODIFICA_ANO:
             return { ...state, ano: action.payload }
         case MODIFICA_APELIDO:

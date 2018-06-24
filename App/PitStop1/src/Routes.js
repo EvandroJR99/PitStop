@@ -21,19 +21,19 @@ export default props => (
     <Router leftButtonIconStyle={{ tintColor: 'white' }}  navigationBarStyle={{ backgroundColor: '#F9A825', borderBottomColor: 'transparent', borderBottomWidth: 0, elevation: 5,shadowOpacity: 5}} 
             titleStyle={{ color: '#fff'}}>
         <Scene key='formLogin' component={FormLogin} title="Login" hideNavBar={true} sceneStyle={{ paddingTop: 50 }}/>
-        <Scene key='formCadastro' component={FormCadastro} title="Cadastro" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='formCadastro' component={FormCadastro} title="Cadastro de Usuário" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='principal' component={Principal} title="Principal" hideNavBar={true} />
         <Scene key='automoveis' component={Automoveis} title="Automóveis" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
-        <Scene key='formVeiculo' component={FormVeiculo} title="Cadastro" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='formVeiculo' component={FormVeiculo} title="Cadastro de Automóvel" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='locais' component={Locais} title="Locais" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
-        <Scene key='formLocais' component={FormLocais} title="Locais" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='formLocais' component={FormLocais} title="Cadastro de Local" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='intervencoes' component={Intervencoes} title="Intervenções" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
-        <Scene key='formIntervencoes' component={FormIntervencoes} title="Intervenção" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
+        <Scene key='formIntervencoes' component={FormIntervencoes} title="Cadastro de Intervenção" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='formPeca' component={FormPeca} title="Pecas" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='informacoesLocais' component={InformacoesLocais} title="Informações do Local" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
         <Scene key='sobre' component={Sobre} title="Sobre" hideNavBar={false} sceneStyle={{ paddingTop: 50 }} />
-        <Scene key='notificacao' component={Notificacao} tittle="Notificação" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
-        <Scene key='informacoesAutomovel' component={InformacoesAutomovel} tittle="Informações Automóvel" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
+        <Scene key='notificacao' component={Notificacao} tittle="Notificações" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
+        <Scene key='informacoesAutomovel' component={InformacoesAutomovel} tittle="Informações do Automóvel" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
         <Scene key='editarAutomovel' component={EditarAutomovel} tittle="Editar Automóvel" hideNavBar={false} sceneStyle={{ paddingTop: 50}} />
     </Router>
 );

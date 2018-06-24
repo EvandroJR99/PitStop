@@ -9,7 +9,9 @@ import {
     ADICIONA_INTERVENCAO_ERRO,
     ADICIONA_INTERVENCAO_SUCESSO,
     CADASTRO_INTERVENCAO_EM_ANDAMENTO,
-    LISTA_INTERVENCAO_USUARIO
+    CADASTRO_INTERVENCAO_ERRO_CAMPOS_VAZIOS,
+    CADASTRO_INTERVENCAO_ERRO_DESCRICAO,
+    CADASTRO_INTERVENCAO_ERRO_AVALIACAO
 } from '../actions/types'
 
 
@@ -60,6 +62,12 @@ export default (state = INITIAL_STATE, action) => {
             }
         case CADASTRO_INTERVENCAO_EM_ANDAMENTO:
             return { ...state, cadastro_intervencao_em_andamento: true }
+        case CADASTRO_INTERVENCAO_ERRO_AVALIACAO:
+            return { ...state, adiciona_intervencao_erro:'Adicione o local para avaliar!', cadastro_intervencao_em_andamento: false }
+        case CADASTRO_INTERVENCAO_ERRO_DESCRICAO:
+            return { ...state, adiciona_intervencao_erro:'A descrição digitada é inválida.', cadastro_intervencao_em_andamento: false }
+        case CADASTRO_INTERVENCAO_ERRO_CAMPOS_VAZIOS:
+            return { ...state, adiciona_intervencao_erro:'* Campos obrigatórios!', cadastro_intervencao_em_andamento: false }
         default:
             return state;
     }
