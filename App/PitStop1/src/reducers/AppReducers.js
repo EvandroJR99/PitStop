@@ -1,6 +1,7 @@
 import {
     MODIFICA_ANO,
     MODIFICA_APELIDO,
+    MODIFICA_APELIDO2,  
     MODIFICA_DATA_REVISAO,
     MODIFICA_PLACA,
     MODIFICA_KM_RECOMENDADA,
@@ -11,6 +12,9 @@ import {
     CADASTRO_VEICULO_ERRO_CAMPOS_VAZIOS,
     CADASTRO_VEICULO_ERRO_APELIDO,
     CADASTRO_VEICULO_ERRO_PLACA,
+    ATUALIZA_VEICULO_ERRO,
+    ATUALIZA_VEICULO_SUCESSO,
+    ATUALIZA_VEICULO_EM_ANDAMENTO,
     EXCLUI_VEICULO_ERRO,
     EXCLUI_VEICULO_SUCESSO,
     EXCLUI_VEICULO_EM_ANDAMENTO
@@ -66,9 +70,26 @@ export default (state = INITIAL_STATE, action) => {
                 cadastro_veiculo_em_andamento: false
             }
         case CADASTRO_VEICULO_EM_ANDAMENTO:
-            return { ...state, cadastro_veiculo_em_andamento: true }
+            return { ...state, cadastro_veiculo_em_andamento: true }            //
+        case ATUALIZA_VEICULO_ERRO:
+            return { ...state, atualiza_veiculo_erro: action.payload, exclui_veiculo_em_andamento: false }
+        case ATUALIZA_VEICULO_SUCESSO:
+            return {
+                ...state,
+                placa: '',
+                quilometragem: '',
+                ano: '',
+                data_revisao: '',
+                km_recomendada: '',
+                apelido: '',
+                atualiza_veiculo_erro: '',
+                atualiza_veiculo_em_andamento: false
+            }
+        case ATUALIZA_VEICULO_EM_ANDAMENTO:
+            return { ...state, atualiza_veiculo_em_andamento: true }
+
             //
-        case EXCLUI_VEICULO_ERRO:
+            case EXCLUI_VEICULO_ERRO:
             return { ...state, exclui_veiculo_erro: action.payload, exclui_veiculo_em_andamento: false }
         case EXCLUI_VEICULO_SUCESSO:
             return {

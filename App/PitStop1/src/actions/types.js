@@ -39,6 +39,11 @@ export const CADASTRO_VEICULO_ERRO_CAMPOS_VAZIOS = 'cadastro_veiculo_erro_campos
 export const CADASTRO_VEICULO_ERRO_APELIDO = 'cadastro_veiculo_erro_apelido';
 export const CADASTRO_VEICULO_ERRO_PLACA = 'cadastro_veiculo_erro_placa';
 
+export const ATUALIZA_VEICULO_SUCESSO = 'atualiza_veiculo';//>>>
+export const ATUALIZA_VEICULO_ERRO = 'atualiza_veiculo_erro';//>>>
+export const ATUALIZA_VEICULO_EM_ANDAMENTO = 'atualiza_veiculo_em_andamento';//>>>
+
+
 export const EXCLUI_VEICULO_SUCESSO = 'exclui_veiculo_inclusao';//<<<<<
 export const EXCLUI_VEICULO_ERRO = 'exclui_veiculo_erro';//<<<<<
 export const EXCLUI_VEICULO_EM_ANDAMENTO = 'exclui_veiculo_em_andamento';//<<<
@@ -82,3 +87,9 @@ export const CADASTRO_INTERVENCAO_EM_ANDAMENTO = 'cadastro_intervencao_em_andame
 export const LISTA_INTERVENCAO_USUARIO = 'lista_intervencao_usuario';
 
 export const MEDIA_LOCAL = 'media_local';
+
+
+
+
+
+
