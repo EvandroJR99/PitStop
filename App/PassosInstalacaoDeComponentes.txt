@@ -1,7 +1,7 @@
 ﻿Para criar o projeto:
 react-native init --version="0.44.0" PitStop1
 
-Demais comandos  que devem ser efetuados em dentro da pasta PitStop1:
+Demais comandos  que devem ser efetuados dentro da pasta PitStop1:
 OBS: Cuidado com os resultados dos comandos, se der WARN ta tudo bem, são só avisos.
 Mas se retornar ERR, são erros, logo a instalação do comando foi mal sucedida.
 
@@ -28,9 +28,11 @@ react-native link react-native-vector-icons
 react-native link
 
 ----------------------------------------
+
 npm install --save lodash
 npm install react-native-star-rating --save
 npm install --save react-native-modal
+
 ----------------------------------------
 
 npm install --save react-native-material-dropdown
@@ -43,3 +45,12 @@ https://github.com/zo0r/react-native-push-notification
 npm install --save react-native-text-input-mask
 react-native link react-native-text-input-mask
 
+-----------------------------------------------
+
+Beleza padwan, espero que você tenha chegado até aqui sem muitas complicações, agora você vai pegar somente os seguintes arquivos da pasta do PitStop do git: src, App.js, index.android e colocar na sua pasta local PitStop1.
+
+Agora é só partir para o abraço, colocar o projeto no android studio, rodar o emulador e...
+
+react-native run-android
+
+;)
