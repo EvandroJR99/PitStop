@@ -82,7 +82,7 @@ class formVeiculo extends Component {
 							onChangeText={texto => this.props.modificaPlaca(texto)}
 						/>
 
-						<Text style={{ paddingTop: 20, fontSize: 18 }}>Quilometragem:</Text>
+						<Text style={{ paddingTop: 20, fontSize: 18 }}>Quilometragem atual:</Text>
 						<TextInputMask
 							refInput={ref => { this.input = ref }}
 							style={{ fontSize: 20, height: 45 }}
@@ -92,7 +92,7 @@ class formVeiculo extends Component {
 							mask={"[000000]"}
 						/>
 
-						<Text style={{ paddingTop: 20, fontSize: 18 }}>KM recomendada:</Text>
+						<Text style={{ paddingTop: 20, fontSize: 18 }}>KM recomendada para revisão:</Text>
 						<TextInputMask
 							refInput={ref => { this.input = ref }}
 							style={{ fontSize: 20, height: 45 }}
