@@ -91,7 +91,7 @@ class formVeiculo extends Component {
 							}}
 							mask={"[000000]"}
 						/>
-		
+
 						<Text style={{ paddingTop: 20, fontSize: 18 }}>KM recomendada:</Text>
 						<TextInputMask
 							refInput={ref => { this.input = ref }}

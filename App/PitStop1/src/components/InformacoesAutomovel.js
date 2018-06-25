@@ -13,29 +13,14 @@ import {
 
     componentWillMount() {
         this._recuperaInformacoes()
+        console.log(this.props.apelido);
+        console.log("UID",this.props.chave);
     }
 
 
 
     _recuperaInformacoes() {
         const { apelido, placa, ano, quilometragem, dataRevisao, kmRecomendada} = this.props
-     /*   console.log("dentro do recupera informacoes", this.props.apelido)
-
-        firebase.database().ref(`/usuario_veiculos/`)
-        .once("value").then((veiculoSnapshot) => {
-            veiculoSnapshot.forEach((childSnapshot) => {
-
-                if (childSnapshot.val().placa == placa) {
-
-                    var valorPlaca = childSnapshot.val().placa;
-                    console.log("valorPlaca:", valorPlaca);
-                }
-                var valorPlaca2 = valorPlaca;
-                this.setState({ Plaaca: valorPlaca2 })
-            })
-
-
-        });*/
     }
 
     state = {
@@ -62,12 +47,12 @@ import {
         this.props.excluirAutomovel({ apelido, placa, ano, quilometragem, dataRevisao, kmRecomendada });
         this._toggleModalExcluir();
     }  
-
+/*
     constructor(props){
         super(props);
         this.state = {apelido: this.props.apelido, placa: this.props.placa, ano: this.props.ano, quilometragem: this.props.quilometragem, dataRevisao: this.props.dataRevisao, kmRecomendada: this.props.dataRevisao};
     }
-
+*/
 
     render() {
         return (
@@ -89,7 +74,8 @@ import {
                                  <Button title="Excluir" color="#F9A825" onPress={this._toggleModalExcluir} />
                             </View>
                             <View style={{ justifyContent: 'center', marginRight: 20,  width: 120, height: 50 }}>                
-                                <Button title="Editar" color="#F9A825" onPress={() =>Actions.editarAutomovel({title: "Editar Automóvel", apelido: this.state.apelido, placa: this.state.placa, ano: this.state.ano, quilometragem: this.state.quilometragem, dataRevisao: this.state.dataRevisao, kmRecomendada: this.state.dataRevisao})}/>
+                                <Button title="Editar" color="#F9A825" onPress={() =>Actions.editarAutomovel({title: "Editar Automóvel", chave: this.props.chave, apelido: this.props.apelido, placa: this.props.placa,
+         ano: this.props.ano, quilometragem: this.props.quilometragem, dataRevisao: this.props.dataRevisao, kmRecomendada: this.props.kmRecomendada})}/>
                             </View>
                           </View>  
                             <Modal isVisible={this.state.isModalVisibleExcluir} backdropColor='white' avoidKeyboard='false' backdropOpacity='0' >

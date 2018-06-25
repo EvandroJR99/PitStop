@@ -1,7 +1,6 @@
 import {
     MODIFICA_ANO,
     MODIFICA_APELIDO,
-    MODIFICA_APELIDO2,  
     MODIFICA_DATA_REVISAO,
     MODIFICA_PLACA,
     MODIFICA_KM_RECOMENDADA,
@@ -38,10 +37,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     console.log(action);
     switch (action.type) {
-        case MODIFICA_APELIDO2:
-            return { ...state, apelido2:action.payload }
-
-
         case MODIFICA_ANO:
             return { ...state, ano: action.payload }
         case MODIFICA_APELIDO:

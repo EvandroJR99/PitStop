@@ -14,7 +14,6 @@ import Modal from "react-native-modal";
 import StarRating from 'react-native-star-rating';
 import TextInputMask from 'react-native-text-input-mask';
 
-
 import {
     modificaVeiculoIntervencao,
     modificaDescricaoIntervencao,

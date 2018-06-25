@@ -30,7 +30,7 @@ class Automoveis extends Component {
     renderRow(veiculos){
      return(
         <TouchableHighlight  underlayColor="rgba(0, 0, 0, 0)"
-        onPress={() => Actions.informacoesAutomovel( {title: "Informações", apelido: veiculos.apelido, placa: veiculos.placa,
+        onPress={() => Actions.informacoesAutomovel( {title: "Informações", chave: veiculos.uid, apelido: veiculos.apelido, placa: veiculos.placa,
          ano: veiculos.ano, quilometragem: veiculos.quilometragem, dataRevisao: veiculos.dataRevisao, kmRecomendada: veiculos.kmRecomendada})}
         >
             <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#CCC" }}>
@@ -63,7 +63,10 @@ class Automoveis extends Component {
 
 mapStateToProps = state => {
     const veiculos = _.map(state.ListaVeiculoReducer, (val, uid) => {
+        
+
         return { ...val, uid }
+        
     })
     return { veiculos }
 }

@@ -31,7 +31,6 @@ export const MODIFICA_ANO = 'modifica_ano';
 export const MODIFICA_DATA_REVISAO = 'modifica_data_revisao';
 export const MODIFICA_KM_RECOMENDADA = 'modifica_km_recomendada';
 export const MODIFICA_APELIDO = 'modifica_apelido';
-export const MODIFICA_APELIDO2 = 'modifica_apelido2'
 
 export const ADICIONA_VEICULO_SUCESSO = 'cadastro_veiculo_inclusao';
 export const ADICIONA_VEICULO_ERRO = 'cadastro_veiculo_erro';
@@ -98,9 +97,3 @@ export const CADASTRO_INTERVENCAO_ERRO_AVALIACAO = 'cadastro_intervencao_erro_av
 //----------------------------------------------------------------------------------
 
 export const MEDIA_LOCAL = 'media_local';
-
-
-
-
-
-

@@ -45,12 +45,6 @@ export const modificaApelido = texto => {
     }
 }
 
-export const modificaApelido2 = texto => {
-    return {
-        type: MODIFICA_APELIDO2,
-        payload: texto
-    }
-}
 
 export const modificaDataRevisao = texto => {
     return {
@@ -104,7 +98,7 @@ export const cadastraVeiculo = ({ placa, quilometragem, ano, data_revisao, km_re
                         } else {
                             //veiculo q queremos adicionar
                             firebase.database().ref(`/veiculos/${placaB64}`)
-                                .push({ quilometragem: quilometragem, ano: ano, dataRevisao: data_revisao, kmRecomendada: km_recomendada, apelido: apelido })
+                                .set({ quilometragem: quilometragem, ano: ano, dataRevisao: data_revisao, kmRecomendada: km_recomendada, apelido: apelido })
                                 .then(() => adicionaVeiculoSucesso(dispatch))
                                 .catch(erro => adicionaVeiculoErro(erro.message, dispatch))
         
@@ -132,24 +126,27 @@ export const cadastraVeiculo = ({ placa, quilometragem, ano, data_revisao, km_re
 }
 
 
-export const atualizaAutomovel = ({ placa, quilometragem, ano, data_revisao, km_recomendada, apelido }) => {
+export const atualizaAutomovel = ({ placa, quilometragem, ano, dataRevisao, kmRecomendada, apelido }) => {
     return dispatch => {
         dispatch({ type: ATUALIZA_VEICULO_EM_ANDAMENTO });
         const { currentUser } = firebase.auth();
+
+        //usuario_veiculos
         let emailUsuarioB64 = b64.encode(currentUser.email);
         firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
         .once('value')
         .then(snapshot => {
             if (snapshot.val()) {
                 const ref = firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`);
-                //firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
                 ref.once("value")
                 .then((veiculosSnapshot) => {
                     veiculosSnapshot.forEach((childSnapshot) => {
+                        if(childSnapshot.val().placa == placa ){
                         console.log("childSnapshot", childSnapshot);
-                        ref.set({ placa, quilometragem, ano, data_revisao, km_recomendada, apelido })
+                        ref.set({ placa: placa, quilometragem: quilometragem, ano: ano, dataRevisao: dataRevisao, kmRecomendada: kmRecomendada, apelido: apelido })
                         .then(() => atualizaVeiculoSucesso(dispatch))
                         .catch(erro => atualizaVeiculoErro(erro.message, dispatch))
+                        }
                     });          
                 });      
             }else {
@@ -169,6 +166,12 @@ export const atualizaAutomovel = ({ placa, quilometragem, ano, data_revisao, km_
 export const excluirAutomovel = ({ placa, quilometragem, ano, data_revisao, km_recomendada, apelido }) => {
     return dispatch => {
         dispatch({ type: EXCLUI_VEICULO_EM_ANDAMENTO });
+        
+        //veiculos
+        let placaB64 = b64.encode(placa);
+        firebase.database().ref(`/veiculos/${placaB64}`).remove();
+
+        //usuario_veiculos
         const { currentUser } = firebase.auth();
         let emailUsuarioB64 = b64.encode(currentUser.email);
         firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
@@ -182,7 +185,7 @@ export const excluirAutomovel = ({ placa, quilometragem, ano, data_revisao, km_r
                             veiculosSnapshot.forEach((childSnapshot) => {
                                 console.log("childSnapshot", childSnapshot);
                                 if(childSnapshot.val().placa == placa ){
-                                    console.log("childSnapshot.key DENTRO DO IF", childSnapshot.key);
+                                  //  console.log("childSnapshot.key DENTRO DO IF", childSnapshot.key);
                                     ref.child(childSnapshot.key).remove()
                                            .then(() => excluiVeiculoSucesso(dispatch))
                                            .catch(erro => excluiVeiculoErro(erro.message, dispatch))
@@ -331,30 +334,3 @@ function snapshotToArray(snapshot){
             console.log("OS ITEMAAAA", items.apelido);
             return  items;
 }
-
-/*
-export const recuperaInformacoesAutomovel = (placa) => {
-
-    return (dispatch) => {
-        const { currentUser } = firebase.auth();
-        let emailUsuarioB64 = b64.encode(currentUser.email);
-        firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`)
-        .once('value')
-        .then(snapshot => {
-            if (snapshot.val()) {
-                        const ref = firebase.database().ref(`/usuario_veiculos/${emailUsuarioB64}`);
-                        ref.once("value")
-                        .then((veiculosSnapshot) => {
-                            veiculosSnapshot.forEach((childSnapshot) => {
-                                console.log("childSnapshot", childSnapshot);
-                                if(childSnapshot.val().placa == placa ){
-                                    ref.child(childSnapshot.key)
-                                }
-                            })
-                        });
-                    }
-            });         
-    }
-
-}
-*/
