@@ -82,16 +82,23 @@ class formIntervencoes extends Component {
     _cadastraPeca() {
 
         const { peca, descricaoPeca } = this.props;
-
-        this.props.cadastraPeca({ peca, descricaoPeca });
-        this._toggleModalPeca();
+        if(peca == '' || descricaoPeca == ''){
+            this.props.cadastraPeca({ peca, descricaoPeca });
+        }else{
+            this.props.cadastraPeca({ peca, descricaoPeca });
+            this._toggleModalPeca();
+        }
+ 
     }
     _cadastraLocalInt() {
 
         const { nomeLocal, responsavel, endereco } = this.props;
-
-        this.props.cadastraLocalInt({ nomeLocal, responsavel, endereco });
-        this._toggleModalLocal();
+        if(nomeLocal == '' || responsavel == '' || endereco == ''){
+            this.props.cadastraLocalInt({ nomeLocal, responsavel, endereco });
+        }else{
+            this.props.cadastraLocalInt({ nomeLocal, responsavel, endereco });
+            this._toggleModalLocal();
+        }
     }
 
     renderBtnCadastro() {
