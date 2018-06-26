@@ -55,10 +55,10 @@ class formCadastro extends Component {
 							placeholder=''
 							onChangeText={texto => this.props.modificaNome(texto)}
 						/>
-						<Text style={{ paddingTop: 20, fontSize: 18 }}>Email:</Text>
+						<Text style={{ paddingTop: 10, fontSize: 18 }}>Email:</Text>
 						<TextInput
 							value={this.props.email}
-							style={{ fontSize: 10, height: 45 }}
+							style={{ fontSize: 20, height: 45 }}
 							placeholder=''
 							onChangeText={texto => this.props.modificaEmail(texto)}
 						/>
