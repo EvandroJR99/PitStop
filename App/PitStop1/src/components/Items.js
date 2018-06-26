@@ -45,7 +45,7 @@ export default class Items extends Component {
                             </TouchableOpacity>
                         )
                         const desactivate = (
-                            <TouchableOpacity onPress={() => this.props.handleRemoveNotifications(key)}>
+                            <TouchableOpacity onPress={() => this.props.handleRemoveNotifications(value, key)}>
                                 <Icon
                                     name="bell"
                                     size={20}
