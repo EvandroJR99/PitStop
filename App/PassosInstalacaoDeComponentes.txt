@@ -47,6 +47,9 @@ react-native link react-native-text-input-mask
 
 -----------------------------------------------
 
+npm install --save react-native-elements
+npm install react-native-popup-menu --save
+
 Beleza padawan, espero que você tenha chegado até aqui sem muitas complicações, agora você vai pegar somente os seguintes arquivos da pasta do PitStop do git: src, App.js, index.android e colocar na sua pasta local PitStop1.
 
 Agora é só partir para o abraço, colocar o projeto no android studio, rodar o emulador e...
