@@ -78,6 +78,7 @@ export const LISTA_PECA_DROP= 'lista_peca_drop';
 export const LISTA_LOCAIS_DROP = 'lista_locais_drop';
 export const LISTA_LOCAIS = 'lista_locais';
 export const LISTA_INTERVENCAO_USUARIO = 'lista_intervencao_usuario';
+export const LISTA_INTERVENCAO_VEICULO = 'lista_intervencao_veiculo';
 //---------------------------------------------------------------------------------
 
 //--------------------------------INTERVENÇÃO---------------------------------------

@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase, { firestore } from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { Alert } from 'react-native';
 import b64 from 'base-64';
@@ -19,7 +19,8 @@ import {
     CADASTRO_INTERVENCAO_ERRO_CAMPOS_VAZIOS,
     CADASTRO_INTERVENCAO_ERRO_DESCRICAO,
     CADASTRO_INTERVENCAO_ERRO_AVALIACAO,
-    LISTA_INTERVENCAO_USUARIO
+    LISTA_INTERVENCAO_USUARIO,
+    LISTA_INTERVENCAO_VEICULO
 } from './types';
 
 
@@ -75,24 +76,24 @@ export const modificaStarIntervencao = texto => {
     }
 }
 
-export const cadastraIntervencao = ({ descricao_intervencao, valor_intervencao, data_intervencao, veiculo_intervencao, peca_intervencao, local_intervencao, star_intervencao  }) => {
+export const cadastraIntervencao = ({ descricao_intervencao, valor_intervencao, data_intervencao, veiculo_intervencao, peca_intervencao, local_intervencao, star_intervencao }) => {
     return dispatch => {
-        dispatch({ type: CADASTRO_INTERVENCAO_EM_ANDAMENTO  });
-        if(descricao_intervencao == '' || valor_intervencao == '' || data_intervencao == '' || veiculo_intervencao == '' ){
-            dispatch({ type: CADASTRO_INTERVENCAO_ERRO_CAMPOS_VAZIOS  });
-        }else{
-            if(local_intervencao == '' && star_intervencao != ''){
+        dispatch({ type: CADASTRO_INTERVENCAO_EM_ANDAMENTO });
+        if (descricao_intervencao == '' || valor_intervencao == '' || data_intervencao == '' || veiculo_intervencao == '') {
+            dispatch({ type: CADASTRO_INTERVENCAO_ERRO_CAMPOS_VAZIOS });
+        } else {
+            if (local_intervencao == '' && star_intervencao != '') {
                 dispatch({ type: CADASTRO_INTERVENCAO_ERRO_AVALIACAO });
-            }else{
+            } else {
                 const validDescricao = soletras.exec(descricao_intervencao);
-                if(validDescricao){
+                if (validDescricao) {
                     //intervencaos adicionada
                     firebase.database().ref(`/intervencoes/`)
                         .push({ dataInter: data_intervencao, valorInter: valor_intervencao, descricaoInter: descricao_intervencao, veiculoInter: veiculo_intervencao, pecaInter: peca_intervencao, localInter: local_intervencao, starInter: star_intervencao })
-                      //  .then(() => adicionaIntervencaoSucesso(dispatch))
-                      //  .catch(erro => adicionaIntervencaoErro(erro.message, dispatch))
+                    //  .then(() => adicionaIntervencaoSucesso(dispatch))
+                    //  .catch(erro => adicionaIntervencaoErro(erro.message, dispatch))
 
-                    
+
 
                     //relacionamento usuario com veiculo
                     const { currentUser } = firebase.auth();
@@ -102,26 +103,26 @@ export const cadastraIntervencao = ({ descricao_intervencao, valor_intervencao, 
                         .push({ dataInter: data_intervencao, valorInter: valor_intervencao, descricaoInter: descricao_intervencao, veiculoInter: veiculo_intervencao, pecaInter: peca_intervencao, localInter: local_intervencao, starInter: star_intervencao })
                         .then(() => adicionaIntervencaoSucesso(dispatch))
                         .catch(erro => adicionaIntervencaoErro(erro.message, dispatch))
-                }else{
+                } else {
                     dispatch({ type: CADASTRO_INTERVENCAO_ERRO_DESCRICAO });
                 }
             }
         }
-                
+
     }
 }
 
 const adicionaIntervencaoErro = (erro, dispatch) => (
-    dispatch (
+    dispatch(
         {
-            type: ADICIONA_INTERVENCAO_ERRO, 
+            type: ADICIONA_INTERVENCAO_ERRO,
             payload: erro
         }
     )
 )
 
 const adicionaIntervencaoSucesso = dispatch => {
-    dispatch (
+    dispatch(
         {
             type: ADICIONA_INTERVENCAO_SUCESSO
         }
@@ -141,11 +142,35 @@ export const intervencoesUsuarioFetch = () => {
     const { currentUser } = firebase.auth();
 
     return (dispatch) => {
-        let emailUsuarioB64 = b64.encode( currentUser.email );
+        let emailUsuarioB64 = b64.encode(currentUser.email);
 
         firebase.database().ref(`/usuario_intervencoes/${emailUsuarioB64}`)
             .on("value", snapshot => {
                 dispatch({ type: LISTA_INTERVENCAO_USUARIO, payload: snapshot.val() })
             })
     }
+}
+
+export const intervencoesUsuarioVeiculoFetch = ({apelido}) => {
+
+
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) => {
+        let vetIntervencoes = [];
+
+        let emailUsuarioB64 = b64.encode(currentUser.email);
+        firebase.database().ref(`/usuario_intervencoes/${emailUsuarioB64}`)
+            .on("value", snapshot =>{
+                snapshot.forEach(snapc =>{
+                    console.log("antes do if +  childSnapshot",snapc.val().veiculoInter);
+                    if (snapc.val().veiculoInter == apelido) {
+                        console.log("entrou no if");
+                        vetIntervencoes.push(snapc.val());
+                     }
+                })
+                dispatch({ type: LISTA_INTERVENCAO_VEICULO, payload: vetIntervencoes }) 
+            })
+            
+            }
 }

@@ -17,6 +17,9 @@ import {
 } from 'react-native-popup-menu'; // 0.8.0
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import {
+    excluirAutomovel,
+} from '../actions/AppActions';
 
 
 class Automoveis extends Component {
@@ -37,43 +40,70 @@ class Automoveis extends Component {
         this.fonteDeDados = ds.cloneWithRows(veiculos)
         console.log("fonte de dados", this.fonteDeDados)
     }
+    /*
+        excluir(placa) {
+            this.setState({
+                ...this.state, 
+                placa: placa});
+            Alert.alert(
+                'Atenção!',
+                'Tem certeza que deseja excluir essa notificação?',
+                [
+                    { text: 'SIM', onPress: () => this.props.excluirAutomovel(this.state.placa) },
+                    { text: 'NÃO', onPress: () => console.log('') },
+                ],
+                { cancelable: false }
+            )
+    
+        }
+        state = {
+            placa:''
+        };
+    */
+
 
     renderRow(veiculos) {
         return (
             <TouchableHighlight underlayColor="rgba(0, 0, 0, 0)"
-                onPress={() => Actions.informacoesAutomovel({
-                    title: "Informações", chave: veiculos.uid, apelido: veiculos.apelido, placa: veiculos.placa,
+                onPress={() => Actions.intervencoesVeiculo({
+                    chave: veiculos.uid, apelido: veiculos.apelido, placa: veiculos.placa,
                     ano: veiculos.ano, quilometragem: veiculos.quilometragem, dataRevisao: veiculos.dataRevisao, kmRecomendada: veiculos.kmRecomendada
                 })}
             >
                 <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#CCC" }}>
-                    <Text style={{ fontSize: 18 }}>{veiculos.apelido}</Text>
-                    <Text style={{ fontSize: 16 }}> Placa: {veiculos.placa}</Text>
-                    
-                    <View>
-                        <Menu>
-                            <MenuTrigger>
+
+
+                    <View >
+                        <Menu style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'column' }}>
+                                <Text style={{ fontSize: 18 }}>{veiculos.apelido}</Text>
+                                <Text style={{ fontSize: 16 }}> Placa: {veiculos.placa}</Text>
+                            </View>
+                            <MenuTrigger >
                                 <Icon
                                     name="dots-vertical"
-                                    size={25}
+                                    size={30}
                                     color="#000"
 
                                 />
                             </MenuTrigger>
-                            <MenuOptions>
-                                <MenuOption onSelect={() => alert(`Save`)} text="Save" />
-                                <MenuOption onSelect={() => alert(`Delete`)}>
-                                    <Text style={{ color: 'red' }}>Delete</Text>
+                            <MenuOptions style={{ paddingTop: 0 }}>
+                                <MenuOption onSelect={() => Actions.editarAutomovel({title: "Editar Automóvel", chave: veiculos.uid, apelido: veiculos.apelido, placa: veiculos.placa,
+                                    ano: veiculos.ano, quilometragem: veiculos.quilometragem, dataRevisao: veiculos.dataRevisao, kmRecomendada: veiculos.kmRecomendada})} >
+                                <Text style={{fontSize: 14}}>Editar</Text>
+                                </MenuOption >
+                                <MenuOption  onSelect={() => Actions.excluirAutomovel2({
+                                    chave: veiculos.uid, apelido: veiculos.apelido, placa: veiculos.placa,
+                                    ano: veiculos.ano, quilometragem: veiculos.quilometragem, dataRevisao: veiculos.dataRevisao, kmRecomendada: veiculos.kmRecomendada
+                                })}>
+                                    <Text>Excluir</Text>
                                 </MenuOption>
-                                <MenuOption
-                                    onSelect={() => alert(`Not called`)}
-                                    disabled={true}
-                                    text="Disabled"
-                                />
                             </MenuOptions>
+
+
                         </Menu>
                     </View>
-               
+
 
                 </View>
             </TouchableHighlight>
@@ -84,12 +114,12 @@ class Automoveis extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <MenuContext style={styles.container} >
-                <ListView
-                    enableEmptySections
-                    dataSource={this.fonteDeDados}
-                    renderRow={this.renderRow}
-                />
-                 </MenuContext>
+                    <ListView
+                        enableEmptySections
+                        dataSource={this.fonteDeDados}
+                        renderRow={this.renderRow}
+                    />
+                </MenuContext>
 
 
 
@@ -116,11 +146,11 @@ mapStateToProps = state => {
     return { veiculos }
 }
 
-export default connect(mapStateToProps, { veiculosUsuarioFetch })(Automoveis);
+export default connect(mapStateToProps, { veiculosUsuarioFetch, excluirAutomovel })(Automoveis);
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1
+        flex: 1
     }
-  });
-  
+});
+

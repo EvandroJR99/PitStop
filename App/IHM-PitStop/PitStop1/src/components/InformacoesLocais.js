@@ -3,6 +3,7 @@ import { View, Text, Alert, ListView } from 'react-native';
 import firebase from 'firebase';
 import StarRating from 'react-native-star-rating';
 import Modal from "react-native-modal";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class InformacoesLocais extends Component {
 
@@ -73,7 +74,8 @@ export default class InformacoesLocais extends Component {
                 <Text style={{ paddingTop:20, fontSize: 18 }}>Avaliação dos usuários: {this.state.numAvaliacao}</Text>
                 <View  style={{ paddingTop: 10 }}>
                     <StarRating
-                        disabled={false}
+                        disabled={false}                        
+                        halfStar={'star-half'}
                         emptyStar={'star-border'}
                         fullStar={'star'}
                         iconSet={'MaterialIcons'}
